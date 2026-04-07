@@ -1,26 +1,222 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* ═══ OCEAN CREST — Navy + Copper Design System ═══ */
+
+  /* Primary: Deep navy — the ocean */
+  --color-primary: #0F172A;
+  --color-primary-light: #1E293B;
+  --color-primary-muted: #334155;
+
+  /* Copper/bronze accent — the spice warmth */
+  --color-gold: #B45309;
+  --color-gold-light: #D97706;
+  --color-gold-muted: #92400E;
+
+  /* Warm spice tones */
+  --color-spice: #C4724E;
+  --color-spice-light: #D4956E;
+  --color-cinnamon: #92400E;
+  --color-saffron: #D97706;
+
+  /* Ocean blues — complementary depth */
+  --color-depth: #1E3A5F;
+  --color-depth-light: #3B6B96;
+  --color-teal: #0D9488;
+
+  /* Neutrals — cool slate base */
+  --color-stone: #F8FAFC;
+  --color-stone-100: #F1F5F9;
+  --color-stone-200: #E2E8F0;
+  --color-stone-300: #CBD5E1;
+  --color-warm-white: #FEFCF9;
+
+  /* Text */
+  --color-ink: #0F172A;
+  --color-ink-muted: #475569;
+  --color-ink-light: #64748B;
+
+  /* Borders */
+  --color-edge: #CBD5E1;
+  --color-edge-light: #E2E8F0;
+
+  /* Functional */
+  --color-error: #DC2626;
+  --color-success: #16A34A;
+  --color-whatsapp: #25D366;
+
+  /* Backward compat aliases */
+  --color-ocean-deep: #0F172A;
+  --color-ocean-mid: #1E3A5F;
+  --color-ocean-light: #3B6B96;
+  --color-ocean-surface: #7CA3C7;
+  --color-seafoam: #0D9488;
+  --color-sand-warm: #B45309;
+  --color-sand-light: #FEFCF9;
+  --color-pearl: #F8FAFC;
+  --color-shell: #F1F5F9;
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #475569;
+  --color-border: #CBD5E1;
+  --color-cta-hover: #92400E;
+
+  /* Fonts */
+  --font-display: var(--font-cormorant);
+  --font-body: var(--font-montserrat);
+
+  /* Shadows — navy tinted */
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.06);
+  --shadow-card-hover: 0 4px 16px rgba(15, 23, 42, 0.1);
+  --shadow-modal: 0 8px 32px rgba(15, 23, 42, 0.14);
+  --shadow-hero: 0 20px 60px rgba(15, 23, 42, 0.18);
+  --shadow-gold: 0 4px 20px rgba(180, 83, 9, 0.2);
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+
+  /* Timing */
+  --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ═══ Base ═══ */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), 'Montserrat', system-ui, sans-serif;
+  color: var(--color-ink);
+  background: var(--color-stone);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display), 'Cormorant', Georgia, serif;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* ═══ Liquid Glass ═══ */
+.glass {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.glass-light {
+  background: rgba(248, 250, 252, 0.88);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(203, 213, 225, 0.5);
+}
+
+/* ═══ Copper Signature Lines ═══ */
+.gold-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+.gold-line-left {
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-gold), transparent 70%);
+  width: 80px;
+}
+
+/* ═══ Reduced Motion ═══ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+[dir="rtl"] { text-align: right; }
+
+::selection {
+  background: var(--color-gold);
+  color: white;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-stone-100); }
+::-webkit-scrollbar-thumb { background: var(--color-stone-300); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-primary-muted); }
+
+/* ═══ Everest-style Nav Underline ═══ */
+.nav-link-underline {
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.25s ease-in-out;
+}
+.group:hover .nav-link-underline {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ═══ Animated Gradient Mesh ═══ */
+.gradient-mesh {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(30, 58, 95, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(180, 83, 9, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(13, 148, 136, 0.1) 0%, transparent 50%);
+}
+
+/* ═══ Text Gradient ═══ */
+.text-gradient-copper {
+  background: linear-gradient(135deg, #D97706 0%, #B45309 50%, #92400E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══ Marquee ═══ */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* ═══ Glow ═══ */
+.copper-glow {
+  box-shadow: 0 0 40px rgba(180, 83, 9, 0.15), 0 0 80px rgba(180, 83, 9, 0.05);
+}
+
+/* ═══ Ken Burns ═══ */
+@keyframes kenBurns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+.animate-ken-burns {
+  animation: kenBurns 20s ease-in-out infinite alternate;
+}
+
+/* ═══ Float Animations ═══ */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+.animate-float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+.animate-float-delay {
+  animation: float 7s ease-in-out infinite 1s;
 }

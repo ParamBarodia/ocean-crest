@@ -1,0 +1,55 @@
+import { Globe, ShieldCheck, TrendingDown, Truck, Leaf, Headphones } from "lucide-react";
+import { ScrollReveal } from "@/components/animations/ScrollReveal";
+import { StaggerChildren, StaggerItem } from "@/components/animations/StaggerChildren";
+
+const features = [
+  { icon: Globe, title: "Global Reach", desc: "Exports to 25+ countries across 5 continents" },
+  { icon: ShieldCheck, title: "Certified Quality", desc: "ISO 22000, HACCP, FSSAI, and FDA registered" },
+  { icon: TrendingDown, title: "Competitive Pricing", desc: "Direct farm sourcing eliminates middlemen" },
+  { icon: Truck, title: "Reliable Supply", desc: "On-time delivery with robust logistics" },
+  { icon: Leaf, title: "Farm Fresh", desc: "Sourced from India's premier growing regions" },
+  { icon: Headphones, title: "Dedicated Support", desc: "Personal account managers for every client" },
+];
+
+export function WhyChooseUs() {
+  return (
+    <section className="py-24 lg:py-32 bg-stone">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          {/* Left: Heading */}
+          <ScrollReveal>
+            <span className="text-[11px] font-medium tracking-[0.3em] uppercase text-gold">
+              Why Ocean Crest
+            </span>
+            <h2 className="mt-4 text-3xl lg:text-[44px] font-semibold text-primary font-[family-name:var(--font-display)] leading-tight">
+              Built on Trust,{"\n"}
+              Backed by Quality
+            </h2>
+            <div className="gold-line-left mt-6" />
+            <p className="mt-6 text-ink-muted leading-relaxed max-w-md">
+              We combine traditional spice expertise with modern quality
+              standards to deliver excellence in every shipment. Our commitment
+              to transparency and reliability makes us the preferred partner
+              for importers worldwide.
+            </p>
+          </ScrollReveal>
+
+          {/* Right: Feature grid */}
+          <StaggerChildren className="grid grid-cols-2 gap-x-8 gap-y-10" staggerDelay={0.08}>
+            {features.map(({ icon: Icon, title, desc }) => (
+              <StaggerItem key={title}>
+                <div className="group cursor-default">
+                  <div className="w-10 h-10 rounded-[var(--radius-sm)] bg-gold/10 flex items-center justify-center mb-3 group-hover:bg-gold/20 transition-colors">
+                    <Icon className="w-5 h-5 text-gold" />
+                  </div>
+                  <h3 className="text-sm font-semibold text-primary">{title}</h3>
+                  <p className="mt-1 text-sm text-ink-muted leading-relaxed">{desc}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerChildren>
+        </div>
+      </div>
+    </section>
+  );
+}

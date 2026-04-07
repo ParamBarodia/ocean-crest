@@ -1,0 +1,291 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import { Menu, X, ChevronDown, Mail, Phone, ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { navigation, companyInfo } from "@/lib/constants/navigation";
+
+export function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const lastScrollY = useRef(0);
+
+  // Hide header on scroll down, show on scroll up (like Everest)
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      setIsScrolled(currentY > 60);
+
+      if (currentY > 110) {
+        setIsHidden(currentY > lastScrollY.current && currentY > 300);
+      } else {
+        setIsHidden(false);
+      }
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isMobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isMobileOpen]);
+
+  return (
+    <>
+      {/* Scroll Progress Bar */}
+      <ScrollProgress />
+
+      <motion.header
+        animate={{ y: isHidden ? "-100%" : "0%" }}
+        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+          isScrolled
+            ? "bg-white/95 backdrop-blur-xl shadow-[0_1px_0_rgba(0,0,0,0.08)]"
+            : "bg-gradient-to-b from-black/40 to-transparent"
+        )}
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex items-center justify-between h-[70px] lg:h-20">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-3 cursor-pointer group">
+              {/* Logo mark */}
+              <div className={cn(
+                "w-9 h-9 rounded-full border-2 flex items-center justify-center transition-all duration-300",
+                isScrolled ? "border-gold" : "border-white/60 group-hover:border-gold"
+              )}>
+                <span className={cn(
+                  "text-sm font-bold font-[family-name:var(--font-display)] transition-colors",
+                  isScrolled ? "text-gold" : "text-white"
+                )}>
+                  OC
+                </span>
+              </div>
+              <div className="flex flex-col">
+                <span className={cn(
+                  "text-[15px] font-semibold font-[family-name:var(--font-display)] tracking-[0.08em] uppercase transition-colors leading-none",
+                  isScrolled ? "text-primary" : "text-white"
+                )}>
+                  Ocean Crest
+                </span>
+                <span className={cn(
+                  "text-[9px] font-medium tracking-[0.25em] uppercase transition-colors mt-0.5",
+                  isScrolled ? "text-ink-light" : "text-white/60"
+                )}>
+                  Premium Exports
+                </span>
+              </div>
+            </Link>
+
+            {/* Desktop Nav */}
+            <nav className="hidden lg:flex items-center gap-6 lg:gap-8">
+              {navigation.map((item) => (
+                <div
+                  key={item.name}
+                  className="relative"
+                  onMouseEnter={() => "children" in item && setActiveDropdown(item.name)}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "relative py-3 text-[14px] font-semibold tracking-[0.05em] uppercase transition-colors duration-200 cursor-pointer group",
+                      isScrolled
+                        ? "text-ink-muted hover:text-gold"
+                        : "text-white hover:text-gold"
+                    )}
+                  >
+                    <span className="flex items-center gap-1.5">
+                      {item.name}
+                      {"children" in item && <ChevronDown className="w-3 h-3 opacity-50 group-hover:rotate-180 transition-transform duration-200" />}
+                    </span>
+                    {/* Everest-style underline: slides in from left, slides out to right */}
+                    <span className="nav-link-underline" />
+                  </Link>
+
+                  {"children" in item && (
+                    <AnimatePresence>
+                      {activeDropdown === item.name && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                          transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+                          className="absolute top-full left-0 mt-2 w-60 bg-white rounded-[var(--radius-md)] shadow-lg overflow-hidden border border-edge/50"
+                        >
+                          <div className="p-1.5">
+                            {item.children.map((child) => (
+                              <Link
+                                key={child.name}
+                                href={child.href}
+                                className="flex items-center justify-between px-4 py-2.5 text-[13px] text-ink-muted hover:text-primary hover:bg-stone-100 rounded-lg transition-all duration-150 cursor-pointer group/item"
+                              >
+                                {child.name}
+                                <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover/item:opacity-50 group-hover/item:translate-x-0 transition-all duration-200" />
+                              </Link>
+                            ))}
+                          </div>
+                          <div className="h-[2px] bg-gradient-to-r from-gold via-gold/50 to-transparent" />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  )}
+                </div>
+              ))}
+            </nav>
+
+            {/* Desktop CTA */}
+            <div className="hidden lg:flex items-center gap-3">
+              <Link href="/contact">
+                <button className="px-5 py-2.5 bg-gold text-white text-[11px] font-semibold tracking-[0.15em] uppercase rounded-full hover:bg-gold-muted transition-all duration-200 cursor-pointer hover:shadow-gold">
+                  Get a Quote
+                </button>
+              </Link>
+            </div>
+
+            {/* Mobile Hamburger */}
+            <button
+              className="lg:hidden p-2 cursor-pointer"
+              onClick={() => setIsMobileOpen(true)}
+              aria-label="Open menu"
+            >
+              <div className="flex flex-col gap-1.5">
+                <span className={cn("block w-6 h-[1.5px] transition-colors", isScrolled ? "bg-primary" : "bg-white")} />
+                <span className={cn("block w-4 h-[1.5px] transition-colors ml-auto", isScrolled ? "bg-primary" : "bg-white")} />
+              </div>
+            </button>
+          </div>
+        </div>
+      </motion.header>
+
+      {/* Mobile Drawer */}
+      <AnimatePresence>
+        {isMobileOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
+              onClick={() => setIsMobileOpen(false)}
+            />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-primary z-50 overflow-y-auto"
+            >
+              <div className="p-8">
+                {/* Close */}
+                <div className="flex items-center justify-between mb-12">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center">
+                      <span className="text-xs font-bold text-gold font-[family-name:var(--font-display)]">OC</span>
+                    </div>
+                    <span className="text-sm font-semibold text-white font-[family-name:var(--font-display)] tracking-wider uppercase">
+                      Ocean Crest
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => setIsMobileOpen(false)}
+                    aria-label="Close menu"
+                    className="w-10 h-10 flex items-center justify-center rounded-full border border-white/10 hover:border-gold/30 transition-colors cursor-pointer"
+                  >
+                    <X className="w-4 h-4 text-white/60" />
+                  </button>
+                </div>
+
+                {/* Nav Links */}
+                <nav className="space-y-1">
+                  {navigation.map((item, i) => (
+                    <motion.div
+                      key={item.name}
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.05 + i * 0.06, duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                    >
+                      <Link
+                        href={item.href}
+                        onClick={() => setIsMobileOpen(false)}
+                        className="flex items-center justify-between px-2 py-4 text-[15px] font-medium text-white/80 hover:text-gold border-b border-white/5 transition-colors cursor-pointer"
+                      >
+                        {item.name}
+                        <ArrowRight className="w-4 h-4 opacity-20" />
+                      </Link>
+                      {"children" in item && (
+                        <div className="pl-4 pb-2">
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.name}
+                              href={child.href}
+                              onClick={() => setIsMobileOpen(false)}
+                              className="block px-2 py-2.5 text-sm text-white/40 hover:text-gold transition-colors cursor-pointer"
+                            >
+                              {child.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </motion.div>
+                  ))}
+                </nav>
+
+                {/* CTA */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.3 }}
+                  className="mt-10 space-y-3"
+                >
+                  <Link href="/contact" onClick={() => setIsMobileOpen(false)}>
+                    <button className="w-full py-3.5 bg-gold text-white font-semibold text-sm rounded-full hover:bg-gold-muted transition-colors cursor-pointer">
+                      Get a Quote
+                    </button>
+                  </Link>
+                  <a
+                    href={`https://wa.me/${companyInfo.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <button className="w-full mt-2 py-3.5 bg-whatsapp/10 border border-whatsapp/20 text-whatsapp font-semibold text-sm rounded-full hover:bg-whatsapp/20 transition-colors cursor-pointer">
+                      WhatsApp Us
+                    </button>
+                  </a>
+                </motion.div>
+
+                {/* Contact info */}
+                <div className="mt-10 pt-8 border-t border-white/5 text-sm text-white/30 space-y-3">
+                  <a href={`mailto:${companyInfo.email}`} className="flex items-center gap-3 hover:text-gold transition-colors cursor-pointer">
+                    <Mail className="w-4 h-4" /> {companyInfo.email}
+                  </a>
+                  <a href={`tel:${companyInfo.phone}`} className="flex items-center gap-3 hover:text-gold transition-colors cursor-pointer">
+                    <Phone className="w-4 h-4" /> {companyInfo.phone}
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
+/* Scroll Progress Bar — like Everest */
+function ScrollProgress() {
+  const { scrollYProgress } = useScroll();
+
+  return (
+    <motion.div
+      className="fixed top-0 left-0 right-0 h-[2px] bg-gold z-[60] origin-left"
+      style={{ scaleX: scrollYProgress }}
+    />
+  );
+}

@@ -1,10 +1,24 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+
+// Dynamically load 3D scene (client-only, no SSR)
+const SpiceJar = dynamic(
+  () => import("@/components/three/SpiceJar").then((m) => m.SpiceJar),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full flex items-center justify-center">
+        <div className="w-16 h-16 border-2 border-gold/30 border-t-gold rounded-full animate-spin" />
+      </div>
+    ),
+  }
+);
 
 const productNames = [
   "Dehydrated Garlic Powder",
@@ -125,29 +139,28 @@ export function HeroSection() {
               </motion.div>
             </div>
 
-            {/* Right: Real product image */}
+            {/* Right: Interactive 3D spice jar */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
-              className="relative hidden lg:block h-[520px]"
+              className="relative hidden lg:block h-[560px]"
             >
-              {/* Main product image */}
-              <div className="relative h-full rounded-[var(--radius-xl)] overflow-hidden border border-white/10 shadow-hero">
-                <Image
-                  src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=900&q=85"
-                  alt="Premium Indian spices and commodities"
-                  fill
-                  className="object-cover animate-ken-burns"
-                  unoptimized
-                />
-                {/* Soft gradient overlay for depth */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent" />
+              {/* 3D Canvas container */}
+              <div className="relative h-full">
+                <SpiceJar spiceColor="#C5923A" rotationSpeed={0.15} />
               </div>
 
-              {/* Decorative gold accent line */}
+              {/* Decorative gold accent corners */}
               <div className="absolute -bottom-3 -right-3 w-32 h-32 border-r-2 border-b-2 border-gold/60 rounded-br-[var(--radius-xl)] pointer-events-none" />
               <div className="absolute -top-3 -left-3 w-32 h-32 border-l-2 border-t-2 border-gold/30 rounded-tl-[var(--radius-xl)] pointer-events-none" />
+
+              {/* Hint badge */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 pointer-events-none">
+                <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-white/60">
+                  Premium Quality · Lab Tested
+                </span>
+              </div>
             </motion.div>
           </div>
         </div>

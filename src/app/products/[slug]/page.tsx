@@ -11,20 +11,13 @@ import { StaggerChildren, StaggerItem } from "@/components/animations/StaggerChi
 import { products, getProductBySlug } from "@/lib/constants/products";
 import { companyInfo } from "@/lib/constants/navigation";
 import { StructuredData, productSchema } from "@/components/seo/StructuredData";
+import { ProductImageViewer } from "@/components/three/ProductImageViewer";
 
 const productImages: Record<string, string> = {
-  "garlic-powder": "https://images.unsplash.com/photo-1540148426945-6cf22a6b2571?w=600&q=80",
-  "turmeric-powder": "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=600&q=80",
-  "red-chilli-powder": "https://images.unsplash.com/photo-1583119022894-919a68a3d0e3?w=600&q=80",
-  "black-pepper": "https://images.unsplash.com/photo-1599909631715-43e0d09e7744?w=600&q=80",
-  "cardamom": "https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?w=600&q=80",
-  "cumin-seeds": "https://images.unsplash.com/photo-1532336414038-cf19250c5757?w=600&q=80",
-  "coriander-seeds": "https://images.unsplash.com/photo-1599909631715-43e0d09e7744?w=600&q=80",
-  "dehydrated-onion": "https://images.unsplash.com/photo-1518977956812-cd3dbadaaf31?w=600&q=80",
-  "sesame-seeds": "https://images.unsplash.com/photo-1508747703725-719777637510?w=600&q=80",
-  "mustard-oil": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600&q=80",
-  "cinnamon-sticks": "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=600&q=80",
-  "fennel-seeds": "https://images.unsplash.com/photo-1599909631715-43e0d09e7744?w=600&q=80",
+  "dehydrated-garlic-powder": "https://images.unsplash.com/photo-1540148426945-6cf22a6b2571?w=600&q=80",
+  "onion-powder": "https://images.unsplash.com/photo-1518977956812-cd3dbadaaf31?w=600&q=80",
+  turmeric: "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=600&q=80",
+  ginger: "https://images.unsplash.com/photo-1615485736668-0f1d27f8d5df?w=600&q=80",
 };
 
 interface Props {
@@ -83,18 +76,16 @@ export default async function ProductDetailPage({ params }: Props) {
       <section className="py-12 lg:py-20 bg-stone">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
-            {/* Image */}
+            {/* Product Image / 3D Viewer with toggle */}
             <ScrollReveal direction="left">
-              <div className="aspect-square rounded-[var(--radius-lg)] overflow-hidden shadow-card sticky top-24 relative group">
-                <Image
-                  src={productImages[product.slug] || "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80"}
-                  alt={product.name}
-                  fill
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
-                  unoptimized
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
-              </div>
+              <ProductImageViewer
+                slug={product.slug}
+                name={product.name}
+                image={
+                  productImages[product.slug] ||
+                  "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80"
+                }
+              />
             </ScrollReveal>
 
             {/* Info */}

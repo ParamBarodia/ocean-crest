@@ -6,7 +6,7 @@ import { certificates } from "@/lib/constants/certificates";
 
 export function CertificateStrip() {
   return (
-    <section className="py-20 lg:py-28 bg-stone-100">
+    <section className="py-24 lg:py-32 bg-stone-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <ScrollReveal>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-12">

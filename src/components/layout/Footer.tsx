@@ -41,7 +41,7 @@ export function Footer() {
                   Part of Sheth &amp; Bhatt&apos;s LLP
                 </span>
               </div>
-              <p className="text-white/50 text-sm leading-relaxed">
+              <p className="text-white/70 text-sm leading-relaxed">
                 A specialized export brand under Sheth &amp; Bhatt&apos;s LLP,
                 dedicated to the global distribution of high-quality Indian
                 products with verified supply and lab-tested quality.
@@ -54,7 +54,7 @@ export function Footer() {
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white/50 hover:bg-gold/20 hover:text-gold transition-all cursor-pointer"
+                    className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:bg-gold/20 hover:text-gold transition-all cursor-pointer"
                     aria-label={name}
                   >
                     <span className="text-xs font-bold uppercase">
@@ -67,7 +67,7 @@ export function Footer() {
 
             {/* Quick Links */}
             <div>
-              <h3 className="text-sm font-semibold tracking-wider uppercase text-white/40 mb-4">
+              <h3 className="text-sm font-semibold tracking-wider uppercase text-white/60 mb-4">
                 Quick Links
               </h3>
               <ul className="space-y-2.5">
@@ -75,7 +75,7 @@ export function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/50 hover:text-gold transition-colors cursor-pointer"
+                      className="text-sm text-white/70 hover:text-gold transition-colors cursor-pointer"
                     >
                       {link.name}
                     </Link>
@@ -86,7 +86,7 @@ export function Footer() {
 
             {/* Products */}
             <div>
-              <h3 className="text-sm font-semibold tracking-wider uppercase text-white/40 mb-4">
+              <h3 className="text-sm font-semibold tracking-wider uppercase text-white/60 mb-4">
                 Our Products
               </h3>
               <ul className="space-y-2.5">
@@ -94,7 +94,7 @@ export function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/50 hover:text-gold transition-colors cursor-pointer"
+                      className="text-sm text-white/70 hover:text-gold transition-colors cursor-pointer"
                     >
                       {link.name}
                     </Link>
@@ -105,10 +105,10 @@ export function Footer() {
 
             {/* Contact + Map */}
             <div>
-              <h3 className="text-sm font-semibold tracking-wider uppercase text-white/40 mb-4">
+              <h3 className="text-sm font-semibold tracking-wider uppercase text-white/60 mb-4">
                 Contact Us
               </h3>
-              <div className="space-y-3 text-sm text-white/50">
+              <div className="space-y-3 text-sm text-white/70">
                 <div className="flex gap-3">
                   <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-gold" />
                   <p>
@@ -139,7 +139,7 @@ export function Footer() {
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.0234567890123!2d72.5713621!3d23.0225035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDAxJzIxLjAiTiA3MsKwMzQnMTcuMCJF!5e0!3m2!1sen!2sin!4v1700000000000"
                   width="100%"
                   height="140"
-                  style={{ border: 0 }}
+                  className="border-0"
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -151,11 +151,11 @@ export function Footer() {
 
           {/* Bottom */}
           <div className="mt-12 pt-8 border-t border-gold/10 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-white/30">
+            <p className="text-sm text-white/55">
               &copy; {new Date().getFullYear()} Ocean Crest Exports. All rights
               reserved. Part of Sheth &amp; Bhatt&apos;s LLP.
             </p>
-            <div className="flex gap-6 text-sm text-white/30">
+            <div className="flex gap-6 text-sm text-white/55">
               <Link
                 href="/privacy"
                 className="hover:text-gold/60 transition-colors cursor-pointer"

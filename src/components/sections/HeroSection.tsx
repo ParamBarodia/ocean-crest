@@ -167,12 +167,12 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll line indicator */}
+      {/* Scroll line indicator — uses scaleY for compositor-only animation */}
       <motion.div
-        initial={{ height: 0 }}
-        animate={{ height: 40 }}
+        initial={{ scaleY: 0, opacity: 0 }}
+        animate={{ scaleY: 1, opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
-        className="absolute bottom-20 left-1/2 -translate-x-1/2 w-px bg-gradient-to-b from-gold/60 to-transparent"
+        className="absolute bottom-20 left-1/2 -translate-x-1/2 w-px h-10 origin-top bg-gradient-to-b from-gold/60 to-transparent"
       />
     </section>
   );

@@ -20,21 +20,6 @@ export function Card({ className, hover = true, children, ...props }: CardProps)
   );
 }
 
-export function CardImage({ className, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) {
-  return (
-    <div className="overflow-hidden">
-      <img
-        className={cn(
-          "w-full h-auto object-cover transition-transform duration-400 ease-out",
-          "group-hover:scale-105",
-          className
-        )}
-        {...props}
-      />
-    </div>
-  );
-}
-
 export function CardContent({ className, children, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div className={cn("p-5", className)} {...props}>

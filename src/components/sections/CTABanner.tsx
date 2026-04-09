@@ -73,53 +73,66 @@ export function CTABanner() {
               >
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-[11px] font-medium tracking-wider uppercase text-white/60">
+                    <label htmlFor="cta-name" className="text-[11px] font-medium tracking-wider uppercase text-white/60">
                       Full Name *
                     </label>
                     <input
+                      id="cta-name"
+                      name="name"
                       required
-                      className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-gold/60 focus:bg-white/10 transition-colors"
+                      className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold focus:bg-white/10 transition-colors"
                       placeholder="Your name"
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-[11px] font-medium tracking-wider uppercase text-white/60">
+                    <label htmlFor="cta-email" className="text-[11px] font-medium tracking-wider uppercase text-white/60">
                       Email *
                     </label>
                     <input
+                      id="cta-email"
+                      name="email"
                       required
                       type="email"
-                      className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-gold/60 focus:bg-white/10 transition-colors"
+                      autoComplete="email"
+                      className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold focus:bg-white/10 transition-colors"
                       placeholder="your@email.com"
                     />
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-[11px] font-medium tracking-wider uppercase text-white/60">
+                    <label htmlFor="cta-phone" className="text-[11px] font-medium tracking-wider uppercase text-white/60">
                       Phone *
                     </label>
                     <input
+                      id="cta-phone"
+                      name="phone"
+                      type="tel"
+                      inputMode="tel"
+                      autoComplete="tel"
                       required
-                      className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-gold/60 focus:bg-white/10 transition-colors"
+                      className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold focus:bg-white/10 transition-colors"
                       placeholder="+91 98765 43210"
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-[11px] font-medium tracking-wider uppercase text-white/60">
+                    <label htmlFor="cta-company" className="text-[11px] font-medium tracking-wider uppercase text-white/60">
                       Company
                     </label>
                     <input
-                      className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-gold/60 focus:bg-white/10 transition-colors"
+                      id="cta-company"
+                      name="company"
+                      autoComplete="organization"
+                      className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold focus:bg-white/10 transition-colors"
                       placeholder="Company name"
                     />
                   </div>
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-[11px] font-medium tracking-wider uppercase text-white/60">
+                  <label htmlFor="cta-product" className="text-[11px] font-medium tracking-wider uppercase text-white/60">
                     Product Interest
                   </label>
-                  <select className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm focus:outline-none focus:border-gold/60 focus:bg-white/10 transition-colors">
+                  <select id="cta-product" name="product" className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold focus:bg-white/10 transition-colors cursor-pointer">
                     <option value="" className="bg-primary">Select a product</option>
                     <option value="garlic" className="bg-primary">Dehydrated Garlic Powder</option>
                     <option value="onion" className="bg-primary">Onion Powder</option>
@@ -128,13 +141,15 @@ export function CTABanner() {
                   </select>
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-[11px] font-medium tracking-wider uppercase text-white/60">
+                  <label htmlFor="cta-message" className="text-[11px] font-medium tracking-wider uppercase text-white/60">
                     Message *
                   </label>
                   <textarea
+                    id="cta-message"
+                    name="message"
                     required
                     rows={3}
-                    className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-gold/60 focus:bg-white/10 transition-colors resize-none"
+                    className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold focus:bg-white/10 transition-colors resize-none"
                     placeholder="Tell us about your requirements..."
                   />
                 </div>

@@ -12,13 +12,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-gold text-primary hover:brightness-110 shadow-card hover:shadow-card-hover",
+    "bg-gold text-white hover:bg-gold-light shadow-card hover:shadow-card-hover",
   secondary:
-    "bg-primary text-white hover:bg-primary/90 shadow-card hover:shadow-card-hover",
+    "bg-primary text-white hover:bg-primary-light shadow-card hover:shadow-card-hover",
   outline:
     "border-2 border-primary text-primary hover:bg-primary hover:text-white",
   ghost: "text-primary hover:bg-stone-100",
-  whatsapp: "bg-whatsapp text-white hover:brightness-110 shadow-card",
+  whatsapp: "bg-whatsapp text-white hover:bg-[#1ebe57] shadow-card",
 };
 
 const sizes: Record<ButtonSize, string> = {

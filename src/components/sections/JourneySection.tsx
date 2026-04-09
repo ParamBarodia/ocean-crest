@@ -44,7 +44,7 @@ const steps = [
 export function JourneySection() {
   return (
     <section className="py-24 lg:py-32 bg-primary relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-5" aria-hidden="true">
         <Image
           src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=60"
           alt=""

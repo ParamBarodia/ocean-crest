@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* ═══ OCEAN CREST — Navy + Copper Design System ═══ */
+  /* ═══ OCEAN CREST EXPORTS — Blue + Beige + Golden ═══ */
 
-  /* Primary: Deep navy — the ocean */
-  --color-primary: #0F172A;
-  --color-primary-light: #1E293B;
-  --color-primary-muted: #334155;
+  /* Primary: Deep blue (from logo) */
+  --color-primary: #1B3A5C;
+  --color-primary-light: #2A5380;
+  --color-primary-muted: #4A7AAB;
 
-  /* Copper/bronze accent — the spice warmth */
-  --color-gold: #B45309;
-  --color-gold-light: #D97706;
-  --color-gold-muted: #92400E;
+  /* Golden accent (from logo "EXPORTS" text) */
+  --color-gold: #C5923A;
+  --color-gold-light: #D4A84E;
+  --color-gold-muted: #A67B2E;
 
   /* Warm spice tones */
   --color-spice: #C4724E;
@@ -19,26 +19,26 @@
   --color-cinnamon: #92400E;
   --color-saffron: #D97706;
 
-  /* Ocean blues — complementary depth */
-  --color-depth: #1E3A5F;
-  --color-depth-light: #3B6B96;
-  --color-teal: #0D9488;
+  /* Ocean blues — complementary */
+  --color-depth: #1B3A5C;
+  --color-depth-light: #4A7AAB;
+  --color-teal: #0D7C6E;
 
-  /* Neutrals — cool slate base */
-  --color-stone: #F8FAFC;
-  --color-stone-100: #F1F5F9;
-  --color-stone-200: #E2E8F0;
-  --color-stone-300: #CBD5E1;
-  --color-warm-white: #FEFCF9;
+  /* Neutrals — warm beige base */
+  --color-stone: #F5F0E8;
+  --color-stone-100: #EDE8DF;
+  --color-stone-200: #DDD6CA;
+  --color-stone-300: #C8BFB0;
+  --color-warm-white: #FAF7F2;
 
   /* Text */
-  --color-ink: #0F172A;
-  --color-ink-muted: #475569;
-  --color-ink-light: #64748B;
+  --color-ink: #1A1A2E;
+  --color-ink-muted: #5A6275;
+  --color-ink-light: #7A8498;
 
   /* Borders */
-  --color-edge: #CBD5E1;
-  --color-edge-light: #E2E8F0;
+  --color-edge: #D4CCB8;
+  --color-edge-light: #E5DFD2;
 
   /* Functional */
   --color-error: #DC2626;
@@ -46,30 +46,30 @@
   --color-whatsapp: #25D366;
 
   /* Backward compat aliases */
-  --color-ocean-deep: #0F172A;
-  --color-ocean-mid: #1E3A5F;
-  --color-ocean-light: #3B6B96;
+  --color-ocean-deep: #1B3A5C;
+  --color-ocean-mid: #2A5380;
+  --color-ocean-light: #4A7AAB;
   --color-ocean-surface: #7CA3C7;
-  --color-seafoam: #0D9488;
-  --color-sand-warm: #B45309;
-  --color-sand-light: #FEFCF9;
-  --color-pearl: #F8FAFC;
-  --color-shell: #F1F5F9;
-  --color-text-primary: #0F172A;
-  --color-text-secondary: #475569;
-  --color-border: #CBD5E1;
-  --color-cta-hover: #92400E;
+  --color-seafoam: #0D7C6E;
+  --color-sand-warm: #C5923A;
+  --color-sand-light: #FAF7F2;
+  --color-pearl: #F5F0E8;
+  --color-shell: #EDE8DF;
+  --color-text-primary: #1A1A2E;
+  --color-text-secondary: #5A6275;
+  --color-border: #D4CCB8;
+  --color-cta-hover: #A67B2E;
 
   /* Fonts */
   --font-display: var(--font-cormorant);
   --font-body: var(--font-montserrat);
 
   /* Shadows — navy tinted */
-  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.06);
-  --shadow-card-hover: 0 4px 16px rgba(15, 23, 42, 0.1);
-  --shadow-modal: 0 8px 32px rgba(15, 23, 42, 0.14);
-  --shadow-hero: 0 20px 60px rgba(15, 23, 42, 0.18);
-  --shadow-gold: 0 4px 20px rgba(180, 83, 9, 0.2);
+  --shadow-card: 0 1px 3px rgba(27, 58, 92, 0.06);
+  --shadow-card-hover: 0 4px 16px rgba(27, 58, 92, 0.1);
+  --shadow-modal: 0 8px 32px rgba(27, 58, 92, 0.14);
+  --shadow-hero: 0 20px 60px rgba(27, 58, 92, 0.18);
+  --shadow-gold: 0 4px 20px rgba(197, 146, 58, 0.25);
 
   /* Radius */
   --radius-sm: 6px;
@@ -110,10 +110,10 @@ h1, h2, h3 {
 }
 
 .glass-light {
-  background: rgba(248, 250, 252, 0.88);
+  background: rgba(250, 247, 242, 0.9);
   backdrop-filter: blur(12px) saturate(150%);
   -webkit-backdrop-filter: blur(12px) saturate(150%);
-  border: 1px solid rgba(203, 213, 225, 0.5);
+  border: 1px solid rgba(212, 204, 184, 0.5);
 }
 
 /* ═══ Copper Signature Lines ═══ */
@@ -170,14 +170,14 @@ h1, h2, h3 {
 /* ═══ Animated Gradient Mesh ═══ */
 .gradient-mesh {
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(30, 58, 95, 0.4) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(180, 83, 9, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, rgba(13, 148, 136, 0.1) 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 50%, rgba(27, 58, 92, 0.5) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(197, 146, 58, 0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(74, 122, 171, 0.15) 0%, transparent 50%);
 }
 
-/* ═══ Text Gradient ═══ */
+/* ═══ Golden Text Gradient ═══ */
 .text-gradient-copper {
-  background: linear-gradient(135deg, #D97706 0%, #B45309 50%, #92400E 100%);
+  background: linear-gradient(135deg, #D4A84E 0%, #C5923A 50%, #A67B2E 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

@@ -8,21 +8,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/Badge";
 import { Card, CardContent } from "@/components/ui/Card";
-import { categories, products, getProductsByCategory } from "@/lib/constants/products";
+import { categories, getProductsByCategory } from "@/lib/constants/products";
 
 const productImages: Record<string, string> = {
-  "garlic-powder": "https://images.unsplash.com/photo-1540148426945-6cf22a6b2571?w=400&q=80",
-  "turmeric-powder": "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=400&q=80",
-  "red-chilli-powder": "https://images.unsplash.com/photo-1583119022894-919a68a3d0e3?w=400&q=80",
-  "black-pepper": "https://images.unsplash.com/photo-1599909631715-43e0d09e7744?w=400&q=80",
-  "cardamom": "https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?w=400&q=80",
-  "cumin-seeds": "https://images.unsplash.com/photo-1532336414038-cf19250c5757?w=400&q=80",
-  "coriander-seeds": "https://images.unsplash.com/photo-1599909631715-43e0d09e7744?w=400&q=80",
-  "dehydrated-onion": "https://images.unsplash.com/photo-1518977956812-cd3dbadaaf31?w=400&q=80",
-  "sesame-seeds": "https://images.unsplash.com/photo-1508747703725-719777637510?w=400&q=80",
-  "mustard-oil": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80",
-  "cinnamon-sticks": "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&q=80",
-  "fennel-seeds": "https://images.unsplash.com/photo-1599909631715-43e0d09e7744?w=400&q=80",
+  "dehydrated-garlic-powder": "https://images.unsplash.com/photo-1540148426945-6cf22a6b2571?w=600&q=80",
+  "onion-powder": "https://images.unsplash.com/photo-1518977956812-cd3dbadaaf31?w=600&q=80",
+  "turmeric": "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=600&q=80",
+  "ginger": "https://images.unsplash.com/photo-1615485736668-0f1d27f8d5df?w=600&q=80",
 };
 
 export function ProductsSection() {

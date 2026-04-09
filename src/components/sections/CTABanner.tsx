@@ -1,55 +1,177 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowRight, MessageCircle } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { useState } from "react";
+import { Send, CheckCircle } from "lucide-react";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
-import { companyInfo } from "@/lib/constants/navigation";
 
 export function CTABanner() {
-  const whatsappUrl = `https://wa.me/${companyInfo.whatsapp}?text=${encodeURIComponent(
-    "Hello Ocean Crest! I'd like to discuss a spice export inquiry."
-  )}`;
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+  };
 
   return (
-    <section className="relative py-28 lg:py-36 bg-primary overflow-hidden">
-      <div className="absolute inset-0 gradient-mesh opacity-60" />
+    <section className="relative py-24 lg:py-32 bg-primary overflow-hidden">
+      <div className="absolute inset-0 gradient-mesh opacity-50" />
 
       {/* Large background text */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
-        <span className="text-[120px] lg:text-[250px] font-bold text-white/[0.02] font-[family-name:var(--font-display)] whitespace-nowrap select-none">
+        <span className="text-[100px] lg:text-[200px] font-bold text-white/[0.02] font-[family-name:var(--font-display)] whitespace-nowrap select-none">
           OCEAN CREST
         </span>
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
-        <ScrollReveal>
-          <span className="text-[11px] font-medium tracking-[0.3em] uppercase text-gold">
-            Start a Conversation
-          </span>
-          <h2 className="mt-4 text-3xl lg:text-5xl font-bold text-white font-[family-name:var(--font-display)]">
-            Ready to Source<br />
-            <span className="text-gradient-copper">Premium Spices?</span>
-          </h2>
-          <p className="mt-6 text-lg text-white/50 max-w-xl mx-auto font-light">
-            Get competitive quotes for bulk orders. Our team responds within 24
-            hours with customized pricing.
-          </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link href="/contact">
-              <Button size="lg">
-                Send Inquiry
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              <Button variant="whatsapp" size="lg">
-                <MessageCircle className="w-4 h-4" />
-                WhatsApp Us
-              </Button>
-            </a>
-          </div>
-        </ScrollReveal>
+      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Left: Text */}
+          <ScrollReveal>
+            <span className="text-[11px] font-medium tracking-[0.3em] uppercase text-gold">
+              Get in Touch
+            </span>
+            <h2 className="mt-4 text-3xl lg:text-5xl font-bold text-white font-[family-name:var(--font-display)] leading-tight">
+              Ready to Source
+              <br />
+              <span className="text-gradient-copper">Quality Products?</span>
+            </h2>
+            <div className="gold-line-left mt-6" />
+            <p className="mt-6 text-base text-white/55 leading-relaxed max-w-md font-light">
+              Fill in your details and our team will get back to you with a
+              customized quote within 24 hours.
+            </p>
+          </ScrollReveal>
+
+          {/* Right: Inline Form */}
+          <ScrollReveal direction="right">
+            {isSubmitted ? (
+              <div className="glass rounded-[var(--radius-lg)] p-10 text-center">
+                <div className="w-16 h-16 mx-auto rounded-full bg-green-500/20 flex items-center justify-center mb-4">
+                  <CheckCircle className="w-8 h-8 text-green-400" />
+                </div>
+                <h3 className="text-2xl font-semibold text-white font-[family-name:var(--font-display)]">
+                  Inquiry Sent!
+                </h3>
+                <p className="mt-2 text-white/60 text-sm">
+                  Our team will respond within 24 hours.
+                </p>
+                <button
+                  onClick={() => setIsSubmitted(false)}
+                  className="mt-4 text-sm text-gold hover:text-gold-light transition-colors cursor-pointer underline"
+                >
+                  Send another inquiry
+                </button>
+              </div>
+            ) : (
+              <form
+                onSubmit={handleSubmit}
+                className="glass rounded-[var(--radius-lg)] p-6 lg:p-8 space-y-4"
+              >
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="text-[11px] font-medium tracking-wider uppercase text-white/60">
+                      Full Name *
+                    </label>
+                    <input
+                      required
+                      className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-gold/60 focus:bg-white/10 transition-colors"
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-[11px] font-medium tracking-wider uppercase text-white/60">
+                      Email *
+                    </label>
+                    <input
+                      required
+                      type="email"
+                      className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-gold/60 focus:bg-white/10 transition-colors"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="text-[11px] font-medium tracking-wider uppercase text-white/60">
+                      Phone *
+                    </label>
+                    <input
+                      required
+                      className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-gold/60 focus:bg-white/10 transition-colors"
+                      placeholder="+91 98765 43210"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-[11px] font-medium tracking-wider uppercase text-white/60">
+                      Company
+                    </label>
+                    <input
+                      className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-gold/60 focus:bg-white/10 transition-colors"
+                      placeholder="Company name"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-[11px] font-medium tracking-wider uppercase text-white/60">
+                    Product Interest
+                  </label>
+                  <select className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm focus:outline-none focus:border-gold/60 focus:bg-white/10 transition-colors">
+                    <option value="" className="bg-primary">Select a product</option>
+                    <option value="garlic" className="bg-primary">Dehydrated Garlic Powder</option>
+                    <option value="onion" className="bg-primary">Onion Powder</option>
+                    <option value="turmeric" className="bg-primary">Turmeric</option>
+                    <option value="ginger" className="bg-primary">Ginger</option>
+                  </select>
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-[11px] font-medium tracking-wider uppercase text-white/60">
+                    Message *
+                  </label>
+                  <textarea
+                    required
+                    rows={3}
+                    className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-gold/60 focus:bg-white/10 transition-colors resize-none"
+                    placeholder="Tell us about your requirements..."
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-3.5 bg-gold text-white font-semibold text-sm tracking-wider uppercase rounded-[var(--radius-sm)] hover:bg-gold-muted transition-colors cursor-pointer disabled:opacity-50 flex items-center justify-center gap-2"
+                >
+                  {isSubmitting ? (
+                    <svg
+                      className="animate-spin h-4 w-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                      />
+                    </svg>
+                  ) : (
+                    <Send className="w-4 h-4" />
+                  )}
+                  {isSubmitting ? "Sending..." : "Get in Touch"}
+                </button>
+              </form>
+            )}
+          </ScrollReveal>
+        </div>
       </div>
     </section>
   );

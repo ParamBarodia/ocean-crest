@@ -1,14 +1,22 @@
 "use client";
 
-import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+  type ReactNode,
+} from "react";
 import { translations, type Locale } from "./translations";
 
-type TranslationSet = (typeof translations)[Locale];
+const RTL_LOCALES: Locale[] = ["ar", "ur"];
 
 interface LanguageContextType {
   locale: Locale;
   setLocale: (locale: Locale) => void;
-  t: TranslationSet;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  t: any;
   dir: "ltr" | "rtl";
 }
 
@@ -22,15 +30,24 @@ const LanguageContext = createContext<LanguageContextType>({
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>("en");
 
+  useEffect(() => {
+    const stored = localStorage.getItem("ocean-crest-locale") as Locale | null;
+    if (stored && translations[stored]) {
+      setLocaleState(stored);
+      document.documentElement.lang = stored;
+      document.documentElement.dir = RTL_LOCALES.includes(stored) ? "rtl" : "ltr";
+    }
+  }, []);
+
   const setLocale = useCallback((newLocale: Locale) => {
     setLocaleState(newLocale);
     document.documentElement.lang = newLocale;
-    document.documentElement.dir = newLocale === "ar" ? "rtl" : "ltr";
+    document.documentElement.dir = RTL_LOCALES.includes(newLocale) ? "rtl" : "ltr";
     localStorage.setItem("ocean-crest-locale", newLocale);
   }, []);
 
-  const t = translations[locale];
-  const dir = locale === "ar" ? "rtl" : "ltr";
+  const t = translations[locale] || translations.en;
+  const dir = RTL_LOCALES.includes(locale) ? "rtl" : "ltr";
 
   return (
     <LanguageContext.Provider value={{ locale, setLocale, t, dir }}>

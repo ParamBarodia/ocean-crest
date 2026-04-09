@@ -5,11 +5,10 @@ export const navigation = [
     name: "Products",
     href: "/products",
     children: [
-      { name: "Whole Spices", href: "/products?category=whole-spices" },
-      { name: "Ground Spices", href: "/products?category=ground-spices" },
-      { name: "Dehydrated Vegetables", href: "/products?category=dehydrated" },
-      { name: "Seeds & Grains", href: "/products?category=seeds-grains" },
-      { name: "Oils", href: "/products?category=oils" },
+      { name: "Dehydrated Garlic Powder", href: "/products?category=dehydrated" },
+      { name: "Onion Powder", href: "/products?category=dehydrated" },
+      { name: "Turmeric", href: "/products?category=spices" },
+      { name: "Ginger", href: "/products?category=spices" },
     ],
   },
   { name: "Certificates", href: "/certificates" },
@@ -17,16 +16,17 @@ export const navigation = [
 ] as const;
 
 export const companyInfo = {
-  name: "Ocean Crest",
-  tagline: "Premium Spice Exports",
+  name: "Ocean Crest Exports",
+  parentCompany: "Sheth & Bhatt's LLP",
+  tagline: "Your Verified Partner for Indian Commodities",
   phone: "+91 98765 43210",
   email: "info@oceancrestexports.com",
   whatsapp: "+919876543210",
   address: {
-    street: "42 Marine Drive, Export Zone",
-    city: "Mumbai",
-    state: "Maharashtra",
-    zip: "400001",
+    street: "Office Address",
+    city: "Ahmedabad",
+    state: "Gujarat",
+    zip: "380001",
     country: "India",
   },
   social: {
@@ -36,9 +36,9 @@ export const companyInfo = {
     twitter: "https://twitter.com/oceancrest",
   },
   stats: {
-    countries: 25,
-    products: 100,
-    years: 15,
-    clients: 500,
+    countries: 0,
+    products: 0,
+    years: 0,
+    clients: 0,
   },
 } as const;

@@ -6,6 +6,7 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-
 import { Menu, X, ChevronDown, Mail, Phone, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { navigation, companyInfo } from "@/lib/constants/navigation";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -72,13 +73,13 @@ export function Header() {
                   "text-[15px] font-semibold font-[family-name:var(--font-display)] tracking-[0.08em] uppercase transition-colors leading-none",
                   isScrolled ? "text-primary" : "text-white"
                 )}>
-                  Ocean Crest
+                  Ocean Crest Exports
                 </span>
                 <span className={cn(
                   "text-[9px] font-medium tracking-[0.25em] uppercase transition-colors mt-0.5",
-                  isScrolled ? "text-ink-light" : "text-white/60"
+                  isScrolled ? "text-gold" : "text-gold-light"
                 )}>
-                  Premium Exports
+                  Part of Sheth &amp; Bhatt&apos;s LLP
                 </span>
               </div>
             </Link>
@@ -141,10 +142,11 @@ export function Header() {
             </nav>
 
             {/* Desktop CTA */}
-            <div className="hidden lg:flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-2">
+              <LanguageSwitcher isScrolled={isScrolled} />
               <Link href="/contact">
                 <button className="px-5 py-2.5 bg-gold text-white text-[11px] font-semibold tracking-[0.15em] uppercase rounded-full hover:bg-gold-muted transition-all duration-200 cursor-pointer hover:shadow-gold">
-                  Get a Quote
+                  Get in Touch
                 </button>
               </Link>
             </div>
@@ -189,9 +191,14 @@ export function Header() {
                     <div className="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center">
                       <span className="text-xs font-bold text-gold font-[family-name:var(--font-display)]">OC</span>
                     </div>
-                    <span className="text-sm font-semibold text-white font-[family-name:var(--font-display)] tracking-wider uppercase">
-                      Ocean Crest
-                    </span>
+                    <div className="flex flex-col">
+                      <span className="text-sm font-semibold text-white font-[family-name:var(--font-display)] tracking-wider uppercase leading-none">
+                        Ocean Crest Exports
+                      </span>
+                      <span className="text-[9px] font-medium tracking-[0.2em] uppercase text-gold mt-0.5">
+                        Part of Sheth &amp; Bhatt&apos;s LLP
+                      </span>
+                    </div>
                   </div>
                   <button
                     onClick={() => setIsMobileOpen(false)}

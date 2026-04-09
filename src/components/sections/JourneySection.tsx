@@ -1,26 +1,43 @@
 import Image from "next/image";
-import { Leaf, Ship, Globe } from "lucide-react";
+import { MapPin, FlaskConical, FileCheck, Package, Truck } from "lucide-react";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { StaggerChildren, StaggerItem } from "@/components/animations/StaggerChildren";
 
 const steps = [
   {
     num: "01",
-    icon: Leaf,
-    title: "Sourced",
-    description: "Direct from certified farms across India's premier spice-growing regions — Kerala, Gujarat, Rajasthan, Tamil Nadu.",
+    icon: MapPin,
+    title: "Sourced Locally",
+    description:
+      "Direct relationships with local producers across India, ensuring full visibility into origin and quality.",
   },
   {
     num: "02",
-    icon: Ship,
-    title: "Shipped",
-    description: "Processed in ISO-certified facilities, packed to international standards, and shipped via established trade routes.",
+    icon: FlaskConical,
+    title: "Lab Tested",
+    description:
+      "Comprehensive analysis in accredited laboratories to verify purity, safety, and international compliance.",
   },
   {
     num: "03",
-    icon: Globe,
-    title: "Delivered",
-    description: "On-time delivery to 25+ countries with complete export documentation and quality guarantees.",
+    icon: FileCheck,
+    title: "Customized Compliance",
+    description:
+      "Tailored testing protocols based on client demand or destination country regulations for seamless customs clearance.",
+  },
+  {
+    num: "04",
+    icon: Package,
+    title: "Strategic Packaging",
+    description:
+      "Industrial-grade, export-specific packaging to preserve product integrity during long-haul transit.",
+  },
+  {
+    num: "05",
+    icon: Truck,
+    title: "Verified Delivery",
+    description:
+      "Every shipment backed by a reliable supply chain and dedicated support to ensure on-time arrival.",
   },
 ];
 
@@ -45,38 +62,44 @@ export function JourneySection() {
               Our Process
             </span>
             <h2 className="mt-3 text-3xl lg:text-5xl font-semibold text-white font-[family-name:var(--font-display)]">
-              Farm to World
+              The Verified Supply
             </h2>
+            <p className="mt-4 text-sm text-white/50 max-w-xl mx-auto">
+              We eliminate uncertainty in cross-border trade through direct
+              sourcing and mandatory laboratory verification for every shipment.
+            </p>
           </div>
         </ScrollReveal>
 
-        {/* Steps with connecting line */}
         <div className="relative">
-          {/* Horizontal connecting line (desktop only) */}
-          <div className="hidden lg:block absolute top-[60px] left-[16%] right-[16%] h-px bg-gradient-to-r from-gold/0 via-gold/30 to-gold/0" />
+          {/* Horizontal connecting line — desktop */}
+          <div className="hidden lg:block absolute top-[60px] left-[10%] right-[10%] h-px bg-gradient-to-r from-gold/0 via-gold/30 to-gold/0" />
 
-          <StaggerChildren className="grid lg:grid-cols-3 gap-12 lg:gap-8" staggerDelay={0.15}>
+          <StaggerChildren
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-y-12 gap-x-4 lg:gap-x-6"
+            staggerDelay={0.12}
+          >
             {steps.map((step) => {
               const Icon = step.icon;
               return (
                 <StaggerItem key={step.num}>
-                  <div className="relative text-center">
-                    {/* Large faded number */}
-                    <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-[140px] lg:text-[180px] font-bold text-white/[0.03] font-[family-name:var(--font-display)] leading-none select-none pointer-events-none">
+                  <div className="relative text-center px-2">
+                    {/* Faded background number */}
+                    <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[100px] lg:text-[130px] font-bold text-white/[0.04] font-[family-name:var(--font-display)] leading-none select-none pointer-events-none">
                       {step.num}
                     </span>
 
                     {/* Icon circle */}
-                    <div className="relative z-10 w-[120px] h-[120px] mx-auto rounded-full border border-gold/20 flex items-center justify-center bg-primary">
-                      <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center">
-                        <Icon className="w-7 h-7 text-gold" />
+                    <div className="relative z-10 w-[100px] h-[100px] mx-auto rounded-full border border-gold/25 flex items-center justify-center bg-primary">
+                      <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center">
+                        <Icon className="w-6 h-6 text-gold" />
                       </div>
                     </div>
 
-                    <h3 className="mt-6 text-xl font-semibold text-white font-[family-name:var(--font-display)]">
+                    <h3 className="mt-5 text-lg font-semibold text-white font-[family-name:var(--font-display)]">
                       {step.title}
                     </h3>
-                    <p className="mt-3 text-sm text-white/40 leading-relaxed max-w-xs mx-auto">
+                    <p className="mt-2 text-xs text-white/45 leading-relaxed">
                       {step.description}
                     </p>
                   </div>

@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export function CTABanner() {
+  const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -17,12 +19,10 @@ export function CTABanner() {
   };
 
   return (
-    <section className="relative py-24 lg:py-32 bg-primary overflow-hidden">
-      <div className="absolute inset-0 gradient-mesh opacity-50" />
-
+    <section className="relative py-28 lg:py-36 bg-primary overflow-hidden">
       {/* Large background text */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
-        <span className="text-[100px] lg:text-[200px] font-bold text-white/[0.02] font-[family-name:var(--font-display)] whitespace-nowrap select-none">
+        <span className="text-[100px] lg:text-[200px] font-bold text-white/[0.015] font-[family-name:var(--font-display)] whitespace-nowrap select-none">
           OCEAN CREST
         </span>
       </div>
@@ -32,7 +32,7 @@ export function CTABanner() {
           {/* Left: Text */}
           <ScrollReveal>
             <span className="text-[11px] font-medium tracking-[0.3em] uppercase text-gold">
-              Get in Touch
+              {t.common.getInTouch}
             </span>
             <h2 className="mt-4 text-3xl lg:text-5xl font-bold text-white font-[family-name:var(--font-display)] leading-tight">
               Ready to Source
@@ -40,7 +40,7 @@ export function CTABanner() {
               <span className="text-gradient-copper">Quality Products?</span>
             </h2>
             <div className="gold-line-left mt-6" />
-            <p className="mt-6 text-base text-white/55 leading-relaxed max-w-md font-light">
+            <p className="mt-6 text-base text-white/60 leading-relaxed max-w-md font-light">
               Fill in your details and our team will get back to you with a
               customized quote within 24 hours.
             </p>
@@ -54,10 +54,10 @@ export function CTABanner() {
                   <CheckCircle className="w-8 h-8 text-green-400" />
                 </div>
                 <h3 className="text-2xl font-semibold text-white font-[family-name:var(--font-display)]">
-                  Inquiry Sent!
+                  {t.contact.success}
                 </h3>
                 <p className="mt-2 text-white/60 text-sm">
-                  Our team will respond within 24 hours.
+                  {t.contact.successMsg}
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
@@ -74,7 +74,7 @@ export function CTABanner() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label htmlFor="cta-name" className="text-[11px] font-medium tracking-wider uppercase text-white/60">
-                      Full Name *
+                      {t.contact.name} *
                     </label>
                     <input
                       id="cta-name"
@@ -86,7 +86,7 @@ export function CTABanner() {
                   </div>
                   <div className="space-y-1.5">
                     <label htmlFor="cta-email" className="text-[11px] font-medium tracking-wider uppercase text-white/60">
-                      Email *
+                      {t.contact.email} *
                     </label>
                     <input
                       id="cta-email"
@@ -102,7 +102,7 @@ export function CTABanner() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label htmlFor="cta-phone" className="text-[11px] font-medium tracking-wider uppercase text-white/60">
-                      Phone *
+                      {t.contact.phone} *
                     </label>
                     <input
                       id="cta-phone"
@@ -117,7 +117,7 @@ export function CTABanner() {
                   </div>
                   <div className="space-y-1.5">
                     <label htmlFor="cta-company" className="text-[11px] font-medium tracking-wider uppercase text-white/60">
-                      Company
+                      {t.contact.company}
                     </label>
                     <input
                       id="cta-company"
@@ -130,7 +130,7 @@ export function CTABanner() {
                 </div>
                 <div className="space-y-1.5">
                   <label htmlFor="cta-product" className="text-[11px] font-medium tracking-wider uppercase text-white/60">
-                    Product Interest
+                    {t.contact.product}
                   </label>
                   <select id="cta-product" name="product" className="w-full px-3 py-2.5 bg-white/5 border border-white/15 rounded-[var(--radius-sm)] text-white text-sm focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold focus:bg-white/10 transition-colors cursor-pointer">
                     <option value="" className="bg-primary">Select a product</option>
@@ -142,7 +142,7 @@ export function CTABanner() {
                 </div>
                 <div className="space-y-1.5">
                   <label htmlFor="cta-message" className="text-[11px] font-medium tracking-wider uppercase text-white/60">
-                    Message *
+                    {t.contact.message} *
                   </label>
                   <textarea
                     id="cta-message"
@@ -181,7 +181,7 @@ export function CTABanner() {
                   ) : (
                     <Send className="w-4 h-4" />
                   )}
-                  {isSubmitting ? "Sending..." : "Get in Touch"}
+                  {isSubmitting ? "Sending..." : t.contact.submit}
                 </button>
               </form>
             )}

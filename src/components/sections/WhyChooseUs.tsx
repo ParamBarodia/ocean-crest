@@ -32,9 +32,9 @@ const features = [
 
 export function WhyChooseUs() {
   return (
-    <section className="py-24 lg:py-32 bg-stone">
+    <section className="py-28 lg:py-36 bg-stone">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div className="grid lg:grid-cols-2 gap-20 lg:gap-28 items-start">
           {/* Left: Heading */}
           <ScrollReveal>
             <span className="text-[11px] font-medium tracking-[0.3em] uppercase text-gold">

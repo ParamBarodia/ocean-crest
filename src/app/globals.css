@@ -64,12 +64,13 @@
   --font-display: var(--font-cormorant);
   --font-body: var(--font-montserrat);
 
-  /* Shadows — navy tinted */
-  --shadow-card: 0 1px 3px rgba(27, 58, 92, 0.06);
-  --shadow-card-hover: 0 4px 16px rgba(27, 58, 92, 0.1);
-  --shadow-modal: 0 8px 32px rgba(27, 58, 92, 0.14);
-  --shadow-hero: 0 20px 60px rgba(27, 58, 92, 0.18);
-  --shadow-gold: 0 4px 20px rgba(197, 146, 58, 0.25);
+  /* Shadows — Vercel-inspired layered system */
+  --shadow-border: 0 0 0 1px rgba(27, 58, 92, 0.08);
+  --shadow-card: 0 0 0 1px rgba(27, 58, 92, 0.08), 0 2px 4px rgba(27, 58, 92, 0.04);
+  --shadow-card-hover: 0 0 0 1px rgba(27, 58, 92, 0.12), 0 8px 24px rgba(27, 58, 92, 0.08);
+  --shadow-modal: 0 0 0 1px rgba(27, 58, 92, 0.1), 0 16px 48px rgba(27, 58, 92, 0.12);
+  --shadow-hero: 0 0 0 1px rgba(27, 58, 92, 0.06), 0 24px 64px rgba(27, 58, 92, 0.16);
+  --shadow-gold: 0 0 0 1px rgba(197, 146, 58, 0.2), 0 4px 16px rgba(197, 146, 58, 0.15);
 
   /* Radius */
   --radius-sm: 6px;
@@ -97,8 +98,18 @@ body {
 
 h1, h2, h3 {
   font-family: var(--font-display), 'Cormorant', Georgia, serif;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+h1 { letter-spacing: -0.04em; }
+
+/* ═══ Shadow-as-border (Vercel pattern) ═══ */
+.shadow-border {
+  box-shadow: 0 0 0 1px rgba(27, 58, 92, 0.08);
+}
+.shadow-border:hover {
+  box-shadow: 0 0 0 1px rgba(27, 58, 92, 0.15), 0 4px 12px rgba(27, 58, 92, 0.06);
 }
 
 /* ═══ Liquid Glass ═══ */

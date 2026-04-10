@@ -6,7 +6,7 @@ import { certificates } from "@/lib/constants/certificates";
 
 export function CertificateStrip() {
   return (
-    <section className="py-24 lg:py-32 bg-stone-100">
+    <section className="py-28 lg:py-36 bg-stone-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <ScrollReveal>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-12">
@@ -28,20 +28,21 @@ export function CertificateStrip() {
           </div>
         </ScrollReveal>
 
+        {/* 3x3 grid — equal height cards via h-full + flex-col */}
         <StaggerChildren
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5"
-          staggerDelay={0.06}
+          className="grid grid-cols-3 lg:grid-cols-3 gap-4 lg:gap-5"
+          staggerDelay={0.05}
         >
-          {certificates.slice(0, 5).map((cert) => (
+          {certificates.map((cert) => (
             <StaggerItem key={cert.id}>
-              <div className="group bg-white rounded-[var(--radius-md)] p-6 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 text-center cursor-default border border-edge-light hover:border-gold/30">
-                <div className="w-14 h-14 mx-auto rounded-full bg-gold/10 flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors">
-                  <ShieldCheck className="w-7 h-7 text-gold" />
+              <div className="group h-full flex flex-col items-center justify-center bg-warm-white rounded-[var(--radius-md)] p-5 lg:p-6 shadow-border hover:shadow-card-hover transition-all duration-200 hover:-translate-y-1 text-center cursor-default border border-edge-light hover:border-gold/30">
+                <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center mb-3 group-hover:bg-gold/20 transition-colors shrink-0">
+                  <ShieldCheck className="w-6 h-6 text-gold" />
                 </div>
-                <h3 className="text-sm font-semibold text-primary">
+                <h3 className="text-[13px] font-semibold text-primary font-[family-name:var(--font-display)] leading-tight">
                   {cert.name}
                 </h3>
-                <p className="mt-1 text-[11px] text-ink-muted leading-tight">
+                <p className="mt-1 text-[10px] text-ink-muted leading-tight">
                   {cert.issuingBody}
                 </p>
               </div>

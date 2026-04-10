@@ -1,24 +1,11 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-
-// Dynamically load 3D scene (client-only, no SSR)
-const SpiceJar = dynamic(
-  () => import("@/components/three/SpiceJar").then((m) => m.SpiceJar),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-full h-full flex items-center justify-center">
-        <div className="w-16 h-16 border-2 border-gold/30 border-t-gold rounded-full animate-spin" />
-      </div>
-    ),
-  }
-);
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const productNames = [
   "Dehydrated Garlic Powder",
@@ -28,6 +15,7 @@ const productNames = [
 ];
 
 export function HeroSection() {
+  const { t } = useLanguage();
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden bg-primary">
       {/* Background image with Ken Burns */}
@@ -43,20 +31,10 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-primary/85" />
       </div>
 
-      {/* Gradient mesh */}
-      <div className="absolute inset-0 gradient-mesh" />
-
-      {/* Grain overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-        }}
-      />
 
       {/* Main content */}
       <div className="relative z-10 flex-1 flex items-center">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full py-32 lg:py-0">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full py-36 lg:py-0">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Left: Text */}
             <div>
@@ -100,7 +78,7 @@ export function HeroSection() {
                 transition={{ delay: 0.8, duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
                 className="mt-4 text-[12px] font-medium tracking-[0.25em] uppercase text-gold"
               >
-                Your Verified Partner for Indian Commodities
+                {t.hero.eyebrow}
               </motion.p>
 
               <motion.p
@@ -109,10 +87,7 @@ export function HeroSection() {
                 transition={{ delay: 0.9, duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
                 className="mt-6 text-base text-white/60 leading-relaxed max-w-md font-light"
               >
-                A specialized export brand under{" "}
-                <span className="text-white/80 font-medium">Sheth &amp; Bhatt&apos;s LLP</span>,
-                dedicated to the global distribution of high-quality Indian
-                products with verified supply and lab-tested quality.
+                {t.hero.subtitle}
               </motion.p>
 
               <motion.div
@@ -123,7 +98,7 @@ export function HeroSection() {
               >
                 <Link href="/products">
                   <Button size="lg">
-                    Explore Products
+                    {t.hero.cta1}
                     <ArrowRight className="w-4 h-4" />
                   </Button>
                 </Link>
@@ -133,7 +108,7 @@ export function HeroSection() {
                     size="lg"
                     className="border-white/25 text-white hover:bg-white/10 hover:text-white"
                   >
-                    About Us
+                    {t.hero.cta2}
                   </Button>
                 </Link>
               </motion.div>
@@ -146,21 +121,21 @@ export function HeroSection() {
               transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
               className="relative hidden lg:block h-[560px]"
             >
-              {/* 3D Canvas container */}
-              <div className="relative h-full">
-                <SpiceJar spiceColor="#C5923A" rotationSpeed={0.15} />
+              {/* Product image */}
+              <div className="relative h-full rounded-[var(--radius-lg)] overflow-hidden shadow-hero">
+                <Image
+                  src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=900&q=85"
+                  alt="Premium Indian spices and commodities"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-transparent" />
               </div>
 
               {/* Decorative gold accent corners */}
-              <div className="absolute -bottom-3 -right-3 w-32 h-32 border-r-2 border-b-2 border-gold/60 rounded-br-[var(--radius-xl)] pointer-events-none" />
-              <div className="absolute -top-3 -left-3 w-32 h-32 border-l-2 border-t-2 border-gold/30 rounded-tl-[var(--radius-xl)] pointer-events-none" />
-
-              {/* Hint badge */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 pointer-events-none">
-                <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-white/60">
-                  Premium Quality · Lab Tested
-                </span>
-              </div>
+              <div className="absolute -bottom-3 -right-3 w-24 h-24 border-r border-b border-gold/50 rounded-br-[var(--radius-xl)] pointer-events-none" />
+              <div className="absolute -top-3 -left-3 w-24 h-24 border-l border-t border-gold/25 rounded-tl-[var(--radius-xl)] pointer-events-none" />
             </motion.div>
           </div>
         </div>
@@ -171,10 +146,10 @@ export function HeroSection() {
         <div className="animate-marquee flex whitespace-nowrap">
           {[...productNames, ...productNames, ...productNames, ...productNames].map((name, i) => (
             <span key={i} className="flex items-center mx-8">
-              <span className="text-[11px] tracking-widest uppercase text-white/30 font-medium">
+              <span className="text-[11px] tracking-[0.2em] uppercase text-white/15 font-medium">
                 {name}
               </span>
-              <span className="ml-8 w-1 h-1 rounded-full bg-gold/50" />
+              <span className="ml-8 w-1 h-1 rounded-full bg-gold/25" />
             </span>
           ))}
         </div>

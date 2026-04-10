@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Image from "next/image";
 import {
   Target,
@@ -99,6 +100,11 @@ export default function AboutPage() {
         </svg>
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
+            <nav className="flex items-center gap-2 text-[12px] text-white/50 mb-4">
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <span className="text-white/30">/</span>
+              <span className="text-white/80">About Us</span>
+            </nav>
             <span className="text-[11px] font-medium tracking-[0.3em] uppercase text-gold">
               About Us
             </span>
@@ -108,7 +114,7 @@ export default function AboutPage() {
             <div className="gold-line-left mt-6" />
             <p className="mt-6 text-base text-white/60 max-w-2xl leading-relaxed">
               A specialized export brand under{" "}
-              <span className="text-white/85 font-medium">
+              <span className="text-white/80 font-medium">
                 Sheth &amp; Bhatt&apos;s LLP
               </span>
               , dedicated to the global distribution of high-quality Indian

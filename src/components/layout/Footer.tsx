@@ -23,12 +23,7 @@ export function Footer() {
       <div className="gold-line" />
 
       <div className="bg-primary text-white relative overflow-hidden">
-        {/* Watermark */}
-        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[120px] lg:text-[200px] font-bold text-white/[0.02] font-[family-name:var(--font-display)] tracking-wider select-none pointer-events-none whitespace-nowrap">
-          OCEAN CREST
-        </span>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-24">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-32">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {/* Brand */}
             <div>
@@ -151,11 +146,11 @@ export function Footer() {
 
           {/* Bottom */}
           <div className="mt-12 pt-8 border-t border-gold/10 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-white/55">
+            <p className="text-sm text-white/60">
               &copy; {new Date().getFullYear()} Ocean Crest Exports. All rights
               reserved. Part of Sheth &amp; Bhatt&apos;s LLP.
             </p>
-            <div className="flex gap-6 text-sm text-white/55">
+            <div className="flex gap-6 text-sm text-white/60">
               <Link
                 href="/privacy"
                 className="hover:text-gold/60 transition-colors cursor-pointer"

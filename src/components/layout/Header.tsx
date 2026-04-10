@@ -7,8 +7,10 @@ import { Menu, X, ChevronDown, Mail, Phone, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { navigation, companyInfo } from "@/lib/constants/navigation";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export function Header() {
+  const { t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -48,7 +50,7 @@ export function Header() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
           isScrolled
-            ? "bg-white/95 backdrop-blur-xl shadow-[0_1px_0_rgba(0,0,0,0.08)]"
+            ? "bg-warm-white/98 backdrop-blur-xl border-b border-edge/40"
             : "bg-gradient-to-b from-black/40 to-transparent"
         )}
       >
@@ -146,7 +148,7 @@ export function Header() {
               <LanguageSwitcher isScrolled={isScrolled} />
               <Link href="/contact">
                 <button className="px-5 py-2.5 bg-gold text-white text-[11px] font-semibold tracking-[0.15em] uppercase rounded-full hover:bg-gold-muted transition-all duration-200 cursor-pointer hover:shadow-gold">
-                  Get in Touch
+                  {t.nav.inquiry}
                 </button>
               </Link>
             </div>
@@ -244,6 +246,11 @@ export function Header() {
                   ))}
                 </nav>
 
+                {/* Language Switcher — Mobile */}
+                <div className="mt-4 border-t border-white/10 pt-4">
+                  <LanguageSwitcher isScrolled={false} />
+                </div>
+
                 {/* CTA */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -253,7 +260,7 @@ export function Header() {
                 >
                   <Link href="/contact" onClick={() => setIsMobileOpen(false)}>
                     <button className="w-full py-3.5 bg-gold text-white font-semibold text-sm rounded-full hover:bg-gold-muted transition-colors cursor-pointer">
-                      Get a Quote
+                      {t.nav.inquiry}
                     </button>
                   </Link>
                   <a

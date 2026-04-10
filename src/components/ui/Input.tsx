@@ -13,7 +13,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       <div className="space-y-1.5">
         <label
           htmlFor={inputId}
-          className="block text-sm font-medium text-text-primary"
+          className="block text-sm font-medium text-ink"
         >
           {label}
           {props.required && <span className="text-error ms-0.5">*</span>}
@@ -23,7 +23,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           id={inputId}
           className={cn(
             "w-full px-4 py-3 bg-stone-100 border border-edge rounded-[var(--radius-sm)]",
-            "text-text-primary placeholder:text-text-secondary/50",
+            "text-ink placeholder:text-text-secondary/50",
             "transition-all duration-200",
             "focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20",
             error && "border-error focus:border-error focus:ring-error/20",

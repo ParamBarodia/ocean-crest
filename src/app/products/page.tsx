@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { ProductsSection } from "@/components/products/ProductsSection";
@@ -27,7 +28,12 @@ export default function ProductsPage() {
         </svg>
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
-            <span className="text-sm font-semibold tracking-widest uppercase text-gold">
+            <nav className="flex items-center gap-2 text-[12px] text-white/50 mb-4">
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <span className="text-white/30">/</span>
+              <span className="text-white/80">Products</span>
+            </nav>
+            <span className="text-[11px] font-medium tracking-[0.3em] uppercase text-gold">
               Our Products
             </span>
             <h1 className="mt-3 text-4xl lg:text-5xl font-bold text-white font-[family-name:var(--font-display)]">

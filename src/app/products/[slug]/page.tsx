@@ -11,7 +11,6 @@ import { StaggerChildren, StaggerItem } from "@/components/animations/StaggerChi
 import { products, getProductBySlug } from "@/lib/constants/products";
 import { companyInfo } from "@/lib/constants/navigation";
 import { StructuredData, productSchema } from "@/components/seo/StructuredData";
-import { ProductImageViewer } from "@/components/three/ProductImageViewer";
 
 const productImages: Record<string, string> = {
   "dehydrated-garlic-powder": "https://images.unsplash.com/photo-1540148426945-6cf22a6b2571?w=600&q=80",
@@ -76,16 +75,18 @@ export default async function ProductDetailPage({ params }: Props) {
       <section className="py-12 lg:py-20 bg-stone">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
-            {/* Product Image / 3D Viewer with toggle */}
+            {/* Product Image */}
             <ScrollReveal direction="left">
-              <ProductImageViewer
-                slug={product.slug}
-                name={product.name}
-                image={
-                  productImages[product.slug] ||
-                  "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80"
-                }
-              />
+              <div className="aspect-square rounded-[var(--radius-lg)] overflow-hidden shadow-border sticky top-24 relative group">
+                <Image
+                  src={productImages[product.slug] || "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80"}
+                  alt={product.name}
+                  fill
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  unoptimized
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+              </div>
             </ScrollReveal>
 
             {/* Info */}

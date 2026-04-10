@@ -51,10 +51,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cormorant.variable} ${montserrat.variable}`} suppressHydrationWarning>
       <body className="min-h-screen flex flex-col" suppressHydrationWarning>
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-gold focus:text-white focus:px-4 focus:py-2 focus:rounded-[var(--radius-sm)] focus:text-sm focus:font-medium">
+          Skip to main content
+        </a>
         <LanguageProvider>
           <StructuredData data={organizationSchema} />
           <Header />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" className="flex-1">{children}</main>
           <Footer />
           <WhatsAppFab />
         </LanguageProvider>

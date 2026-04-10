@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { companyInfo } from "@/lib/constants/navigation";
@@ -55,7 +56,12 @@ export default function ContactPage() {
         </svg>
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
-            <span className="text-sm font-semibold tracking-widest uppercase text-gold">Get in Touch</span>
+            <nav className="flex items-center gap-2 text-[12px] text-white/50 mb-4">
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <span className="text-white/30">/</span>
+              <span className="text-white/80">Contact</span>
+            </nav>
+            <span className="text-[11px] font-medium tracking-[0.3em] uppercase text-gold">Get in Touch</span>
             <h1 className="mt-3 text-4xl lg:text-5xl font-bold text-white font-[family-name:var(--font-display)]">
               Contact <span className="text-gold">Ocean Crest</span>
             </h1>
@@ -80,7 +86,7 @@ export default function ContactPage() {
                         <Icon className="w-5 h-5 text-gold" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-primary">{title}</h3>
+                        <h3 className="font-semibold text-primary font-[family-name:var(--font-display)]">{title}</h3>
                         {details.map((line) =>
                           href ? (
                             <a key={line} href={href} className="block text-sm text-ink-muted hover:text-gold transition-colors mt-0.5">
@@ -108,7 +114,7 @@ export default function ContactPage() {
                     <MessageCircle className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-primary">WhatsApp Us</h3>
+                    <h3 className="font-semibold text-primary font-[family-name:var(--font-display)]">WhatsApp Us</h3>
                     <p className="text-sm text-ink-muted">Quick response on WhatsApp</p>
                   </div>
                 </a>

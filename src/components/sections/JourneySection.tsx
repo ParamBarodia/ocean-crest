@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { MapPin, FlaskConical, FileCheck, Package, Truck } from "lucide-react";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { StaggerChildren, StaggerItem } from "@/components/animations/StaggerChildren";
@@ -43,17 +42,8 @@ const steps = [
 
 export function JourneySection() {
   return (
-    <section className="py-24 lg:py-32 bg-primary relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5" aria-hidden="true">
-        <Image
-          src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=60"
-          alt=""
-          fill
-          className="object-cover"
-          unoptimized
-        />
-      </div>
-      <div className="absolute inset-0 gradient-mesh opacity-40" />
+    <section className="py-28 lg:py-36 bg-primary relative overflow-hidden">
+      <div className="absolute inset-0 gradient-mesh opacity-20" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         <ScrollReveal>
@@ -99,7 +89,7 @@ export function JourneySection() {
                     <h3 className="mt-5 text-lg font-semibold text-white font-[family-name:var(--font-display)]">
                       {step.title}
                     </h3>
-                    <p className="mt-2 text-xs text-white/45 leading-relaxed">
+                    <p className="mt-2 text-xs text-white/40 leading-relaxed">
                       {step.description}
                     </p>
                   </div>

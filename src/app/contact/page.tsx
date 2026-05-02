@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { companyInfo } from "@/lib/constants/navigation";
@@ -120,13 +121,19 @@ export default function ContactPage() {
                 </a>
               </ScrollReveal>
 
-              {/* Map Placeholder */}
+              {/* Map */}
               <ScrollReveal>
-                <div className="bg-gradient-to-br from-primary/10 to-gold/5 rounded-[var(--radius-md)] h-48 flex items-center justify-center border border-edge">
-                  <div className="text-center text-ink-muted/50">
-                    <MapPin className="w-8 h-8 mx-auto mb-2" />
-                    <p className="text-sm">Google Maps Integration</p>
-                  </div>
+                <div className="rounded-[var(--radius-md)] overflow-hidden border border-edge shadow-card">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.0234567890123!2d72.5713621!3d23.0225035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDAxJzIxLjAiTiA3MsKwMzQnMTcuMCJF!5e0!3m2!1sen!2sin!4v1700000000000"
+                    width="100%"
+                    height="280"
+                    className="border-0 block"
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Ocean Crest Exports Location"
+                  />
                 </div>
               </ScrollReveal>
             </div>
@@ -141,7 +148,9 @@ export default function ContactPage() {
                   <p className="text-ink-muted mb-8">
                     Fill in the details below and our export team will get back to you within 24 hours.
                   </p>
-                  <InquiryForm />
+                  <Suspense fallback={<div className="h-96 animate-pulse bg-stone-100 rounded-md" />}>
+                    <InquiryForm />
+                  </Suspense>
                 </div>
               </ScrollReveal>
             </div>

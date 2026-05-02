@@ -47,6 +47,7 @@ export function Header() {
       <motion.header
         animate={{ y: isHidden ? "-100%" : "0%" }}
         transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+        style={{ paddingTop: "env(safe-area-inset-top)" }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
           isScrolled
@@ -88,17 +89,29 @@ export function Header() {
 
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center gap-6 lg:gap-8">
-              {navigation.map((item) => (
+              {navigation.map((item) => {
+                const hasChildren = "children" in item;
+                const isOpen = activeDropdown === item.name;
+                return (
                 <div
                   key={item.name}
                   className="relative"
-                  onMouseEnter={() => "children" in item && setActiveDropdown(item.name)}
+                  onMouseEnter={() => hasChildren && setActiveDropdown(item.name)}
                   onMouseLeave={() => setActiveDropdown(null)}
+                  onFocus={() => hasChildren && setActiveDropdown(item.name)}
+                  onBlur={(e) => {
+                    if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                      setActiveDropdown(null);
+                    }
+                  }}
                 >
                   <Link
                     href={item.href}
+                    aria-haspopup={hasChildren ? "true" : undefined}
+                    aria-expanded={hasChildren ? isOpen : undefined}
                     className={cn(
                       "relative py-3 text-[14px] font-semibold tracking-[0.05em] uppercase transition-colors duration-200 cursor-pointer group",
+                      "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold rounded-sm",
                       isScrolled
                         ? "text-ink-muted hover:text-gold"
                         : "text-white hover:text-gold"
@@ -106,15 +119,15 @@ export function Header() {
                   >
                     <span className="flex items-center gap-1.5">
                       {item.name}
-                      {"children" in item && <ChevronDown className="w-3 h-3 opacity-50 group-hover:rotate-180 transition-transform duration-200" />}
+                      {hasChildren && <ChevronDown className={cn("w-3 h-3 opacity-50 transition-transform duration-200", isOpen && "rotate-180")} />}
                     </span>
                     {/* Everest-style underline: slides in from left, slides out to right */}
                     <span className="nav-link-underline" />
                   </Link>
 
-                  {"children" in item && (
+                  {hasChildren && (
                     <AnimatePresence>
-                      {activeDropdown === item.name && (
+                      {isOpen && (
                         <motion.div
                           initial={{ opacity: 0, y: 10, scale: 0.98 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -127,7 +140,7 @@ export function Header() {
                               <Link
                                 key={child.name}
                                 href={child.href}
-                                className="flex items-center justify-between px-4 py-2.5 text-[13px] text-ink-muted hover:text-primary hover:bg-stone-100 rounded-lg transition-all duration-150 cursor-pointer group/item"
+                                className="flex items-center justify-between px-4 py-2.5 text-[13px] text-ink-muted hover:text-primary hover:bg-stone-100 rounded-lg transition-all duration-150 cursor-pointer group/item focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                               >
                                 {child.name}
                                 <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover/item:opacity-50 group-hover/item:translate-x-0 transition-all duration-200" />
@@ -140,7 +153,8 @@ export function Header() {
                     </AnimatePresence>
                   )}
                 </div>
-              ))}
+                );
+              })}
             </nav>
 
             {/* Desktop CTA */}

@@ -1,3 +1,7 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { MapPin, FlaskConical, FileCheck, Package, Truck } from "lucide-react";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { StaggerChildren, StaggerItem } from "@/components/animations/StaggerChildren";
@@ -41,6 +45,13 @@ const steps = [
 ];
 
 export function JourneySection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start 70%", "end 60%"],
+  });
+  const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
   return (
     <section className="py-28 lg:py-36 bg-primary relative overflow-hidden">
       <div className="absolute inset-0 gradient-mesh opacity-20" />
@@ -54,16 +65,21 @@ export function JourneySection() {
             <h2 className="mt-3 text-3xl lg:text-5xl font-semibold text-white font-[family-name:var(--font-display)]">
               The Verified Supply
             </h2>
-            <p className="mt-4 text-sm text-white/50 max-w-xl mx-auto">
+            <p className="mt-4 text-sm text-white/70 max-w-xl mx-auto">
               We eliminate uncertainty in cross-border trade through direct
               sourcing and mandatory laboratory verification for every shipment.
             </p>
           </div>
         </ScrollReveal>
 
-        <div className="relative">
-          {/* Horizontal connecting line — desktop */}
-          <div className="hidden lg:block absolute top-[60px] left-[10%] right-[10%] h-px bg-gradient-to-r from-gold/0 via-gold/30 to-gold/0" />
+        <div ref={sectionRef} className="relative">
+          {/* Static track — subtle base line */}
+          <div className="hidden lg:block absolute top-[60px] left-[10%] right-[10%] h-px bg-white/10" />
+          {/* Animated gold line — fills as user scrolls */}
+          <motion.div
+            style={{ scaleX: lineScale }}
+            className="hidden lg:block absolute top-[60px] left-[10%] right-[10%] h-px origin-left bg-gradient-to-r from-gold via-gold to-gold/60"
+          />
 
           <StaggerChildren
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-y-12 gap-x-4 lg:gap-x-6"
@@ -75,13 +91,13 @@ export function JourneySection() {
                 <StaggerItem key={step.num}>
                   <div className="relative text-center px-2">
                     {/* Faded background number */}
-                    <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[100px] lg:text-[130px] font-bold text-white/[0.04] font-[family-name:var(--font-display)] leading-none select-none pointer-events-none">
+                    <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[100px] lg:text-[130px] font-bold text-white/[0.05] font-[family-name:var(--font-display)] leading-none select-none pointer-events-none">
                       {step.num}
                     </span>
 
                     {/* Icon circle */}
-                    <div className="relative z-10 w-[100px] h-[100px] mx-auto rounded-full border border-gold/25 flex items-center justify-center bg-primary">
-                      <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center">
+                    <div className="relative z-10 w-[100px] h-[100px] mx-auto rounded-full border border-gold/30 flex items-center justify-center bg-primary">
+                      <div className="w-14 h-14 rounded-full bg-gold/15 flex items-center justify-center">
                         <Icon className="w-6 h-6 text-gold" />
                       </div>
                     </div>
@@ -89,7 +105,7 @@ export function JourneySection() {
                     <h3 className="mt-5 text-lg font-semibold text-white font-[family-name:var(--font-display)]">
                       {step.title}
                     </h3>
-                    <p className="mt-2 text-xs text-white/40 leading-relaxed">
+                    <p className="mt-2 text-xs text-white/65 leading-relaxed">
                       {step.description}
                     </p>
                   </div>

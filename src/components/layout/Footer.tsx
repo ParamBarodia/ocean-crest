@@ -36,7 +36,7 @@ export function Footer() {
                   Part of Sheth &amp; Bhatt&apos;s LLP
                 </span>
               </div>
-              <p className="text-white/70 text-sm leading-relaxed">
+              <p className="text-white/80 text-sm leading-relaxed">
                 A specialized export brand under Sheth &amp; Bhatt&apos;s LLP,
                 dedicated to the global distribution of high-quality Indian
                 products with verified supply and lab-tested quality.
@@ -70,7 +70,7 @@ export function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/70 hover:text-gold transition-colors cursor-pointer"
+                      className="text-sm text-white/80 hover:text-gold transition-colors cursor-pointer"
                     >
                       {link.name}
                     </Link>
@@ -89,7 +89,7 @@ export function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/70 hover:text-gold transition-colors cursor-pointer"
+                      className="text-sm text-white/80 hover:text-gold transition-colors cursor-pointer"
                     >
                       {link.name}
                     </Link>
@@ -103,7 +103,7 @@ export function Footer() {
               <h3 className="text-sm font-semibold tracking-wider uppercase text-white/60 mb-4">
                 Contact Us
               </h3>
-              <div className="space-y-3 text-sm text-white/70">
+              <div className="space-y-3 text-sm text-white/80">
                 <div className="flex gap-3">
                   <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-gold" />
                   <p>

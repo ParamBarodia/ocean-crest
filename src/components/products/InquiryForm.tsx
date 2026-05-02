@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Send, CheckCircle } from "lucide-react";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
@@ -33,6 +34,10 @@ const productOptions = products.map((p) => ({
 }));
 
 export function InquiryForm() {
+  const searchParams = useSearchParams();
+  const prefilledProduct = searchParams.get("product") ?? "";
+  const productPrefillValid = products.some((p) => p.slug === prefilledProduct);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -92,6 +97,7 @@ export function InquiryForm() {
           name="product"
           placeholder="Select a product"
           options={productOptions}
+          defaultValue={productPrefillValid ? prefilledProduct : ""}
         />
       </div>
       <Input label="Estimated Quantity" name="quantity" placeholder="e.g., 5 MT, 1000 kg" />

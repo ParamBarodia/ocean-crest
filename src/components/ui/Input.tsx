@@ -4,11 +4,17 @@ import { forwardRef, type InputHTMLAttributes } from "react";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   error?: string;
+  helperText?: string;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, label, error, id, ...props }, ref) => {
+  ({ className, label, error, helperText, id, ...props }, ref) => {
     const inputId = id || label.toLowerCase().replace(/\s+/g, "-");
+    const describedBy = error
+      ? `${inputId}-error`
+      : helperText
+      ? `${inputId}-help`
+      : undefined;
     return (
       <div className="space-y-1.5">
         <label
@@ -26,18 +32,23 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             "text-ink placeholder:text-text-secondary/50",
             "transition-all duration-200",
             "focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20",
+            "disabled:bg-stone-200/60 disabled:text-ink-muted disabled:cursor-not-allowed disabled:opacity-70",
             error && "border-error focus:border-error focus:ring-error/20",
             className
           )}
           aria-invalid={error ? "true" : undefined}
-          aria-describedby={error ? `${inputId}-error` : undefined}
+          aria-describedby={describedBy}
           {...props}
         />
-        {error && (
+        {error ? (
           <p id={`${inputId}-error`} className="text-sm text-error" role="alert">
             {error}
           </p>
-        )}
+        ) : helperText ? (
+          <p id={`${inputId}-help`} className="text-xs text-ink-muted">
+            {helperText}
+          </p>
+        ) : null}
       </div>
     );
   }

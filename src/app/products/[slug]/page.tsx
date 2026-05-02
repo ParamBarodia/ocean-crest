@@ -11,13 +11,44 @@ import { StaggerChildren, StaggerItem } from "@/components/animations/StaggerChi
 import { products, getProductBySlug } from "@/lib/constants/products";
 import { companyInfo } from "@/lib/constants/navigation";
 import { StructuredData, productSchema } from "@/components/seo/StructuredData";
+import { ProductGallery } from "@/components/products/ProductGallery";
 
 const productImages: Record<string, string> = {
-  "dehydrated-garlic-powder": "https://images.unsplash.com/photo-1540148426945-6cf22a6b2571?w=600&q=80",
-  "onion-powder": "https://images.unsplash.com/photo-1518977956812-cd3dbadaaf31?w=600&q=80",
-  turmeric: "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=600&q=80",
-  ginger: "https://images.unsplash.com/photo-1615485736668-0f1d27f8d5df?w=600&q=80",
+  "dehydrated-garlic-powder": "https://images.unsplash.com/photo-1540148426945-6cf22a6b2571?w=900&q=80",
+  "onion-powder": "https://images.unsplash.com/photo-1518977956812-cd3dbadaaf31?w=900&q=80",
+  turmeric: "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=900&q=80",
+  ginger: "https://images.unsplash.com/photo-1615485736668-0f1d27f8d5df?w=900&q=80",
 };
+
+// Placeholder secondary shots — user will swap for real packaging/scale photos later.
+const gallerySecondary: Record<string, string[]> = {
+  "dehydrated-garlic-powder": [
+    "https://images.unsplash.com/photo-1513135065346-a098a63a71ee?w=900&q=80",
+    "https://images.unsplash.com/photo-1588165171080-c89acfa5ee83?w=900&q=80",
+    "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=900&q=80",
+  ],
+  "onion-powder": [
+    "https://images.unsplash.com/photo-1580201092675-a0a6a6cafbb1?w=900&q=80",
+    "https://images.unsplash.com/photo-1506368083636-6defb67639a7?w=900&q=80",
+    "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=900&q=80",
+  ],
+  turmeric: [
+    "https://images.unsplash.com/photo-1578855691621-8a08ea00d1fb?w=900&q=80",
+    "https://images.unsplash.com/photo-1532336414038-cf19250c5757?w=900&q=80",
+    "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=900&q=80",
+  ],
+  ginger: [
+    "https://images.unsplash.com/photo-1573414405692-7e20f01b6e69?w=900&q=80",
+    "https://images.unsplash.com/photo-1599909631716-8a9c67ae5d11?w=900&q=80",
+    "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=900&q=80",
+  ],
+};
+
+function getGalleryImages(slug: string): string[] {
+  const main = productImages[slug] ?? "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=900&q=80";
+  const rest = gallerySecondary[slug] ?? [];
+  return [main, ...rest];
+}
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -75,18 +106,9 @@ export default async function ProductDetailPage({ params }: Props) {
       <section className="py-12 lg:py-20 bg-stone">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
-            {/* Product Image */}
+            {/* Product Gallery */}
             <ScrollReveal direction="left">
-              <div className="aspect-square rounded-[var(--radius-lg)] overflow-hidden shadow-border sticky top-24 relative group">
-                <Image
-                  src={productImages[product.slug] || "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80"}
-                  alt={product.name}
-                  fill
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                  unoptimized
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
-              </div>
+              <ProductGallery images={getGalleryImages(product.slug)} alt={product.name} />
             </ScrollReveal>
 
             {/* Info */}

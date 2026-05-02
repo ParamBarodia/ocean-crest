@@ -85,7 +85,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9, duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
-                className="mt-6 text-base text-white/60 leading-relaxed max-w-md font-light"
+                className="mt-6 text-base text-white/75 leading-relaxed max-w-md font-light"
               >
                 {t.hero.subtitle}
               </motion.p>
@@ -146,10 +146,10 @@ export function HeroSection() {
         <div className="animate-marquee flex whitespace-nowrap">
           {[...productNames, ...productNames, ...productNames, ...productNames].map((name, i) => (
             <span key={i} className="flex items-center mx-8">
-              <span className="text-[11px] tracking-[0.2em] uppercase text-white/15 font-medium">
+              <span className="text-[11px] tracking-[0.2em] uppercase text-white/40 font-medium">
                 {name}
               </span>
-              <span className="ml-8 w-1 h-1 rounded-full bg-gold/25" />
+              <span className="ml-8 w-1 h-1 rounded-full bg-gold/60" />
             </span>
           ))}
         </div>

@@ -1,8 +1,44 @@
-import { ShieldCheck, ArrowUpRight } from "lucide-react";
+import {
+  ArrowUpRight,
+  Leaf,
+  Globe,
+  ShieldCheck,
+  Plane,
+  Flame,
+  Landmark,
+  Moon,
+  Factory,
+  Sprout,
+  type LucideIcon,
+} from "lucide-react";
 import Link from "next/link";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { StaggerChildren, StaggerItem } from "@/components/animations/StaggerChildren";
 import { certificates } from "@/lib/constants/certificates";
+
+type CertVisual = {
+  icon: LucideIcon;
+  accent: string;   // tailwind text + bg classes (text-X bg-X/10 group-hover:bg-X/20)
+  mono: string;     // 3-4 char mono mark shown beside the icon
+};
+
+const visualById: Record<string, CertVisual> = {
+  "fssai":       { icon: Leaf,        accent: "text-emerald-600 bg-emerald-500/10 group-hover:bg-emerald-500/20", mono: "FSS" },
+  "iso-22000":   { icon: Globe,       accent: "text-sky-700     bg-sky-500/10     group-hover:bg-sky-500/20",     mono: "ISO" },
+  "haccp":       { icon: ShieldCheck, accent: "text-red-600     bg-red-500/10     group-hover:bg-red-500/20",     mono: "HCP" },
+  "apeda":       { icon: Plane,       accent: "text-teal-700    bg-teal-500/10    group-hover:bg-teal-500/20",    mono: "APE" },
+  "spice-board": { icon: Flame,       accent: "text-orange-600  bg-orange-500/10  group-hover:bg-orange-500/20",  mono: "SPI" },
+  "fda":         { icon: Landmark,    accent: "text-blue-800    bg-blue-500/10    group-hover:bg-blue-500/20",    mono: "FDA" },
+  "halal":       { icon: Moon,        accent: "text-green-700   bg-green-500/10   group-hover:bg-green-500/20",   mono: "HAL" },
+  "gmp":         { icon: Factory,     accent: "text-purple-700  bg-purple-500/10  group-hover:bg-purple-500/20",  mono: "GMP" },
+  "organic":     { icon: Sprout,      accent: "text-lime-700    bg-lime-500/10    group-hover:bg-lime-500/20",    mono: "ORG" },
+};
+
+const fallback: CertVisual = {
+  icon: ShieldCheck,
+  accent: "text-gold bg-gold/10 group-hover:bg-gold/20",
+  mono: "CRT",
+};
 
 export function CertificateStrip() {
   return (
@@ -28,26 +64,32 @@ export function CertificateStrip() {
           </div>
         </ScrollReveal>
 
-        {/* 3x3 grid — equal height cards via h-full + flex-col */}
         <StaggerChildren
-          className="grid grid-cols-3 lg:grid-cols-3 gap-4 lg:gap-5"
+          className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-5"
           staggerDelay={0.05}
         >
-          {certificates.map((cert) => (
-            <StaggerItem key={cert.id}>
-              <div className="group h-full flex flex-col items-center justify-center bg-warm-white rounded-[var(--radius-md)] p-5 lg:p-6 shadow-border hover:shadow-card-hover transition-all duration-200 hover:-translate-y-1 text-center cursor-default border border-edge-light hover:border-gold/30">
-                <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center mb-3 group-hover:bg-gold/20 transition-colors shrink-0">
-                  <ShieldCheck className="w-6 h-6 text-gold" />
+          {certificates.map((cert) => {
+            const v = visualById[cert.id] ?? fallback;
+            const Icon = v.icon;
+            return (
+              <StaggerItem key={cert.id}>
+                <div className="group h-full flex flex-col items-center justify-center bg-warm-white rounded-[var(--radius-md)] p-5 lg:p-6 shadow-border hover:shadow-card-hover transition-all duration-200 hover:-translate-y-1 text-center cursor-default border border-edge-light hover:border-gold/30">
+                  <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-3 transition-colors shrink-0 ${v.accent}`}>
+                    <Icon className="w-7 h-7" />
+                  </div>
+                  <span className={`text-[9px] font-bold tracking-[0.25em] uppercase mb-1.5 ${v.accent.split(" ")[0]}`}>
+                    {v.mono}
+                  </span>
+                  <h3 className="text-[13px] font-semibold text-primary font-[family-name:var(--font-display)] leading-tight">
+                    {cert.name}
+                  </h3>
+                  <p className="mt-1 text-[10px] text-ink-muted leading-tight">
+                    {cert.issuingBody}
+                  </p>
                 </div>
-                <h3 className="text-[13px] font-semibold text-primary font-[family-name:var(--font-display)] leading-tight">
-                  {cert.name}
-                </h3>
-                <p className="mt-1 text-[10px] text-ink-muted leading-tight">
-                  {cert.issuingBody}
-                </p>
-              </div>
-            </StaggerItem>
-          ))}
+              </StaggerItem>
+            );
+          })}
         </StaggerChildren>
       </div>
     </section>

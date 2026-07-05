@@ -109,6 +109,17 @@ const fr: Translations = {
       features: ["Taille mesh : 80 à 100+ mesh", "Texture : poudre fine et fluide", "Couleur : blanc neige immaculé à jaune pâle", "Teneur élevée en huile essentielle", "Exempt de matières étrangères", "Testé en laboratoire pour la pureté et la sécurité"],
       specs: { "Produit": "Poudre d'ail déshydraté", "Origine": "Inde", "Taille mesh": "80 – 100+ mesh", "Texture": "Poudre fine et fluide", "Couleur": "Blanc neige immaculé à jaune pâle", "Emballage": "Qualité export, résistant à l'humidité", "Tests de laboratoire": "Vérifié par un laboratoire accrédité" },
     },
+    "dehydrated-turmeric-powder": {
+      name: "Poudre de curcuma déshydraté",
+      category: "Déshydraté",
+      meshBadge: "60–200 mesh",
+      shortDescription: "Poudre de curcuma vibrante, riche en curcumine, moulue à partir de rhizomes séchés au soleil pour une couleur profonde et une chaleur terreuse.",
+      description: "La poudre de curcuma Ocean Crest est moulue à partir de rhizomes soigneusement sélectionnés et séchés au soleil pour offrir une couleur dorée profonde, une haute teneur en curcumine et l'arôme chaud et terreux qui définit le curcuma premium.",
+      bestFor: ["Poudres de curry et mélanges d'épices", "Lattes au curcuma et boissons bien-être", "Extraits nutraceutiques", "Colorant alimentaire naturel"],
+      institutionalNote: "Provenant des meilleures régions de culture du curcuma et testé pour la teneur en curcumine, garantissant une couleur et une puissance constantes lot après lot.",
+      features: ["Taille mesh : 60 à 200 mesh", "Teneur en curcumine : 3–5 %", "Couleur : jaune-orange doré profond", "Humidité : max 10 %", "Arôme riche et terreux avec une valeur colorante élevée", "Testé en laboratoire pour la pureté et la sécurité"],
+      specs: { "Produit": "Poudre de curcuma déshydraté", "Origine": "Inde", "Taille mesh": "60 – 200 mesh", "Teneur en curcumine": "3 – 5 %", "Couleur": "Jaune-orange doré profond", "Humidité": "Max 10 %", "Emballage": "Qualité export, résistant à l'humidité", "Tests de laboratoire": "Vérifié par un laboratoire accrédité" },
+    },
   },
   certData: {
     fssai: { name: "FSSAI", description: "Autorité indienne de sécurité et de normes alimentaires — garantit la conformité en matière de sécurité alimentaire pour tous les produits.", issuingBody: "Gouvernement de l'Inde" },

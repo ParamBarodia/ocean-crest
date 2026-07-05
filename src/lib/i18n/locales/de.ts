@@ -109,6 +109,17 @@ const de: Translations = {
       features: ["Mesh-Größe: 80 bis 100+ mesh", "Textur: feines, rieselfähiges Pulver", "Farbe: makelloses Schneeweiß bis Blassgelb", "Hoher Gehalt an ätherischem Öl", "Frei von Fremdstoffen", "Laborgeprüft auf Reinheit und Sicherheit"],
       specs: { "Produkt": "Getrocknetes Knoblauchpulver", "Herkunft": "Indien", "Mesh-Größe": "80 – 100+ Mesh", "Textur": "Feines, rieselfähiges Pulver", "Farbe": "Makelloses Schneeweiß bis Blassgelb", "Verpackung": "Exportqualität, feuchtigkeitsbeständig", "Laborprüfung": "Von akkreditiertem Labor verifiziert" },
     },
+    "dehydrated-turmeric-powder": {
+      name: "Getrocknetes Kurkumapulver",
+      category: "Getrocknet",
+      meshBadge: "60–200 mesh",
+      shortDescription: "Leuchtendes, curcuminreiches Kurkumapulver, gemahlen aus sonnengetrockneten Rhizomen für tiefe Farbe und erdige Wärme.",
+      description: "Das Kurkumapulver von Ocean Crest wird aus sorgfältig ausgewählten, sonnengetrockneten Rhizomen gemahlen und liefert eine tiefgoldene Farbe, einen hohen Curcumingehalt und das warme, erdige Aroma, das Premium-Kurkuma ausmacht.",
+      bestFor: ["Currypulver & Gewürzmischungen", "Kurkuma-Lattes & Wellness-Getränke", "Nutrazeutische Extrakte", "Natürliches Lebensmittelfärbemittel"],
+      institutionalNote: "Bezogen aus erstklassigen Kurkuma-Anbaugebieten und auf Curcumingehalt geprüft, um Charge für Charge gleichbleibende Farbe und Wirkstärke zu gewährleisten.",
+      features: ["Mesh-Größe: 60 bis 200 mesh", "Curcumingehalt: 3–5 %", "Farbe: tiefes goldenes Gelb-Orange", "Feuchtigkeit: max. 10 %", "Reiches, erdiges Aroma mit hohem Farbwert", "Laborgeprüft auf Reinheit und Sicherheit"],
+      specs: { "Produkt": "Getrocknetes Kurkumapulver", "Herkunft": "Indien", "Mesh-Größe": "60 – 200 Mesh", "Curcumingehalt": "3 – 5 %", "Farbe": "Tiefes goldenes Gelb-Orange", "Feuchtigkeit": "Max. 10 %", "Verpackung": "Exportqualität, feuchtigkeitsbeständig", "Laborprüfung": "Von akkreditiertem Labor verifiziert" },
+    },
   },
   certData: {
     fssai: { name: "FSSAI", description: "Indische Behörde für Lebensmittelsicherheit und -standards — gewährleistet die Einhaltung der Lebensmittelsicherheit für alle Produkte.", issuingBody: "Regierung von Indien" },

@@ -227,6 +227,48 @@ export const products: Product[] = [
       "Lab Testing": "Accredited laboratory verified",
     },
   },
+  {
+    slug: "dehydrated-turmeric-powder",
+    name: "Dehydrated Turmeric Powder",
+    category: "Dehydrated",
+    categorySlug: "dehydrated",
+    hasPhotography: true,
+    image: "/images/products/turmeric/powder-1.webp",
+    video: "/videos/products/turmeric/powder.mp4",
+    meshBadge: "60–200 mesh",
+    shortDescription:
+      "Vibrant, high-curcumin turmeric powder milled from sun-cured rhizomes for deep color and earthy warmth.",
+    description:
+      "Ocean Crest Turmeric Powder is milled from carefully selected, sun-cured rhizomes to deliver a deep golden color, high curcumin content, and the warm, earthy aroma that defines premium turmeric.",
+    origin: "India",
+    bestFor: [
+      "Curry powders & spice blends",
+      "Turmeric lattes & wellness drinks",
+      "Nutraceutical extracts",
+      "Natural food coloring",
+    ],
+    institutionalNote:
+      "Sourced from prime turmeric-growing belts and tested for curcumin content, ensuring consistent color and potency batch after batch.",
+    features: [
+      "Mesh size: 60 to 200 mesh",
+      "Curcumin content: 3–5%",
+      "Color: Deep golden yellow-orange",
+      "Moisture: Max 10%",
+      "Rich, earthy aroma with high color value",
+      "Lab tested for purity and safety",
+      "Export-grade industrial packaging",
+    ],
+    specifications: {
+      Product: "Dehydrated Turmeric Powder",
+      Origin: "India",
+      "Mesh Size": "60 – 200 Mesh",
+      "Curcumin Content": "3 – 5%",
+      Color: "Deep Golden Yellow-Orange",
+      Moisture: "Max 10%",
+      Packaging: "Export-grade, moisture-resistant",
+      "Lab Testing": "Accredited laboratory verified",
+    },
+  },
 ];
 
 export function getProductBySlug(slug: string): Product | undefined {

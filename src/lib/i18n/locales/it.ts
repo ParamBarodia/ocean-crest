@@ -109,6 +109,17 @@ const it: Translations = {
       features: ["Dimensione mesh: da 80 a 100+ mesh", "Consistenza: polvere fine e scorrevole", "Colore: bianco neve immacolato a giallo pallido", "Alto contenuto di olio essenziale", "Privo di corpi estranei", "Testato in laboratorio per purezza e sicurezza"],
       specs: { "Prodotto": "Aglio disidratato in polvere", "Origine": "India", "Dimensione mesh": "80 – 100+ Mesh", "Consistenza": "Polvere fine e scorrevole", "Colore": "Bianco neve immacolato a giallo pallido", "Imballaggio": "Qualità export, resistente all'umidità", "Test di laboratorio": "Verificato da laboratorio accreditato" },
     },
+    "dehydrated-turmeric-powder": {
+      name: "Curcuma disidratata in polvere",
+      category: "Disidratato",
+      meshBadge: "60–200 mesh",
+      shortDescription: "Polvere di curcuma vibrante e ricca di curcumina, macinata da rizomi essiccati al sole per un colore intenso e un calore terroso.",
+      description: "La polvere di curcuma di Ocean Crest è macinata da rizomi accuratamente selezionati ed essiccati al sole per offrire un colore dorato intenso, un alto contenuto di curcumina e l'aroma caldo e terroso che definisce la curcuma premium.",
+      bestFor: ["Polveri di curry e miscele di spezie", "Latte alla curcuma e bevande benessere", "Estratti nutraceutici", "Colorante alimentare naturale"],
+      institutionalNote: "Proveniente dalle migliori regioni di coltivazione della curcuma e testata per il contenuto di curcumina, garantendo colore e potenza costanti lotto dopo lotto.",
+      features: ["Dimensione mesh: da 60 a 200 mesh", "Contenuto di curcumina: 3–5%", "Colore: giallo-arancio dorato intenso", "Umidità: max 10%", "Aroma ricco e terroso con alto valore cromatico", "Testato in laboratorio per purezza e sicurezza"],
+      specs: { "Prodotto": "Curcuma disidratata in polvere", "Origine": "India", "Dimensione mesh": "60 – 200 Mesh", "Contenuto di curcumina": "3 – 5%", "Colore": "Giallo-arancio dorato intenso", "Umidità": "Max 10%", "Imballaggio": "Qualità export, resistente all'umidità", "Test di laboratorio": "Verificato da laboratorio accreditato" },
+    },
   },
   certData: {
     fssai: { name: "FSSAI", description: "Autorità per la sicurezza e gli standard alimentari dell'India — garantisce la conformità alla sicurezza alimentare per tutti i prodotti.", issuingBody: "Governo dell'India" },

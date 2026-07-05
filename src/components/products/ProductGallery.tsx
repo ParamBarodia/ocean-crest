@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { m, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Play } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ProductImagePlaceholder } from "./ProductImagePlaceholder";
@@ -36,19 +36,52 @@ export function ProductGallery({
   const slides: Slide[] = [];
   for (const src of images) slides.push({ type: "image", src });
   if (video) slides.push({ type: "video", src: video, poster: videoPoster ?? images[0] });
+  const slidesLength = slides.length;
 
   const [active, setActive] = useState(0);
+  // Read as a primitive (not the `slides` array itself, which is a fresh
+  // reference every render) so effects below only re-run when the active
+  // slide's actual type changes, not on every unrelated re-render.
+  const activeSlideType = slides[active]?.type;
   // Pulse the placeholder background until the first image paints. Cleared
   // by next/image's onLoad — avoids the flat-grey "is this loading?" beat.
   const [firstImageLoaded, setFirstImageLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const reducedMotion = useReducedMotion();
+
+  const SLIDE_MS = 4500;
+  // Remaining time on the current slide's countdown, in ms. Only reset when
+  // the slide itself changes — pausing/resuming (hover) just stops/starts the
+  // tick below without losing progress, so brief cursor jitter near the
+  // gallery doesn't restart the full countdown every time.
+  const remainingRef = useRef(SLIDE_MS);
+  useEffect(() => {
+    remainingRef.current = SLIDE_MS;
+  }, [active]);
+
+  // Auto-advancing slideshow. Paused on hover, honors prefers-reduced-motion,
+  // and never advances away from an active video — the video autoplays and
+  // loops on its own; auto-advancing over it would cut playback short with
+  // no way to resume (native controls are intentionally hidden).
+  useEffect(() => {
+    if (slidesLength <= 1 || isPaused || reducedMotion) return;
+    if (activeSlideType === "video") return;
+    const tickMs = 200;
+    const id = setInterval(() => {
+      remainingRef.current -= tickMs;
+      if (remainingRef.current <= 0) {
+        setActive((prev) => (prev + 1) % slidesLength);
+      }
+    }, tickMs);
+    return () => clearInterval(id);
+  }, [active, isPaused, reducedMotion, slidesLength, activeSlideType]);
 
   // When the active slide is a video, autoplay it; otherwise pause + reset.
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
-    const current = slides[active];
-    if (current?.type === "video") {
+    if (activeSlideType === "video") {
       // React doesn't reflect `muted` to the DOM attribute; some mobile Safari
       // builds need the property/`defaultMuted` set for muted-inline autoplay.
       el.muted = true;
@@ -58,7 +91,7 @@ export function ProductGallery({
       el.pause();
       el.currentTime = 0;
     }
-  }, [active, slides]);
+  }, [active, activeSlideType]);
 
   // Empty → placeholder.
   if (slides.length === 0) {
@@ -77,6 +110,8 @@ export function ProductGallery({
     <div className="sticky top-14 lg:top-16">
       {/* Main slide with hover-zoom for images */}
       <div
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
         className={cn(
           "aspect-square rounded-[var(--radius-lg)] overflow-hidden shadow-border relative group bg-stone-100",
           !firstImageLoaded && "animate-pulse",
@@ -99,7 +134,7 @@ export function ProductGallery({
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 unoptimized={!isLocalImage(current.src)}
-                priority={active === 0}
+                preload={active === 0}
                 onLoad={() => setFirstImageLoaded(true)}
               />
             ) : (
@@ -111,7 +146,6 @@ export function ProductGallery({
                 loop
                 playsInline
                 autoPlay
-                controls
                 preload="metadata"
                 className="absolute inset-0 w-full h-full object-cover bg-black"
               />

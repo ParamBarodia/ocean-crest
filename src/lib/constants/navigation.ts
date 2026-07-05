@@ -11,6 +11,7 @@ export const navigation = [
       { name: "Garlic Minced", href: "/products/dehydrated-garlic-minced" },
       { name: "Garlic Granules", href: "/products/dehydrated-garlic-granules" },
       { name: "Garlic Powder", href: "/products/dehydrated-garlic-powder" },
+      { name: "Turmeric Powder", href: "/products/dehydrated-turmeric-powder" },
     ],
   },
   // { name: "Certificates", key: "certificates", href: "/certificates" }, // hidden for now — re-enable later

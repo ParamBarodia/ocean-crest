@@ -38,6 +38,7 @@ const productLinks = [
   { slug: "dehydrated-garlic-minced", fallback: "Garlic Minced" },
   { slug: "dehydrated-garlic-granules", fallback: "Garlic Granules" },
   { slug: "dehydrated-garlic-powder", fallback: "Garlic Powder" },
+  { slug: "dehydrated-turmeric-powder", fallback: "Turmeric Powder" },
 ] as const;
 
 export function Footer() {
@@ -52,37 +53,26 @@ export function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {/* Brand */}
             <div>
-              <div className="mb-6 -ms-4 lg:-ms-6">
+              <div className="mb-6">
                 <Link
                   href="/"
                   dir="ltr"
                   onClick={() => scrollToTop()}
-                  className="inline-flex items-center gap-3 cursor-pointer"
+                  className="inline-flex flex-col items-center gap-2 cursor-pointer"
                 >
                   <Image
                     src="/images/brand/OC MONOGRAM.png"
                     alt="OC monogram"
                     width={120}
                     height={120}
-                    sizes="64px"
+                    sizes="96px"
                     loading="lazy"
-                    className="h-12 lg:h-14 w-auto object-contain [filter:drop-shadow(0_0_1px_rgba(212,166,74,1))_drop-shadow(0_0_1px_rgba(212,166,74,1))_drop-shadow(0_0_2px_rgba(212,166,74,0.7))]"
+                    className="h-20 lg:h-24 w-auto object-contain [filter:drop-shadow(0_0_1px_rgba(212,166,74,1))_drop-shadow(0_0_1px_rgba(212,166,74,1))_drop-shadow(0_0_2px_rgba(212,166,74,0.7))]"
                   />
                   <span className="text-[14px] lg:text-[16px] font-semibold tracking-[0.12em] uppercase font-[family-name:var(--font-display)] text-white leading-none whitespace-nowrap">
                     Ocean Crest Exports
                   </span>
                 </Link>
-              </div>
-              <div className="mb-4 -ms-10 lg:-ms-12">
-                <Image
-                  src="/images/brand/sheth-bhatts-logo.png"
-                  alt="Sheth & Bhatt's LLP"
-                  width={560}
-                  height={168}
-                  sizes="(min-width: 1024px) 360px, 320px"
-                  loading="lazy"
-                  className="h-32 lg:h-36 w-auto"
-                />
               </div>
               <p className="text-white/80 text-sm leading-relaxed">
                 {t.footer.tagline}

@@ -109,6 +109,17 @@ const es: Translations = {
       features: ["Tamaño de mesh: 80 a 100+ mesh", "Textura: polvo fino y fluido", "Color: blanco nieve impecable a amarillo pálido", "Alto contenido de aceite esencial", "Libre de materias extrañas", "Probado en laboratorio para pureza y seguridad"],
       specs: { "Producto": "Ajo deshidratado en polvo", "Origen": "India", "Tamaño de mesh": "80 – 100+ Mesh", "Textura": "Polvo fino y fluido", "Color": "Blanco nieve impecable a amarillo pálido", "Embalaje": "Calidad de exportación, resistente a la humedad", "Pruebas de laboratorio": "Verificado por laboratorio acreditado" },
     },
+    "dehydrated-turmeric-powder": {
+      name: "Cúrcuma deshidratada en polvo",
+      category: "Deshidratado",
+      meshBadge: "60–200 mesh",
+      shortDescription: "Polvo de cúrcuma vibrante y alto en curcumina, molido a partir de rizomas curados al sol para un color intenso y calidez terrosa.",
+      description: "El polvo de cúrcuma de Ocean Crest se muele a partir de rizomas cuidadosamente seleccionados y curados al sol para ofrecer un color dorado intenso, un alto contenido de curcumina y el aroma cálido y terroso que define a la cúrcuma premium.",
+      bestFor: ["Polvos de curry y mezclas de especias", "Lattes de cúrcuma y bebidas de bienestar", "Extractos nutracéuticos", "Colorante alimentario natural"],
+      institutionalNote: "Procedente de las principales regiones productoras de cúrcuma y probado para verificar el contenido de curcumina, garantizando un color y una potencia consistentes lote tras lote.",
+      features: ["Tamaño de mesh: 60 a 200 mesh", "Contenido de curcumina: 3–5%", "Color: amarillo-naranja dorado intenso", "Humedad: máx. 10%", "Aroma rico y terroso con alto valor de color", "Probado en laboratorio para pureza y seguridad"],
+      specs: { "Producto": "Cúrcuma deshidratada en polvo", "Origen": "India", "Tamaño de mesh": "60 – 200 Mesh", "Contenido de curcumina": "3 – 5%", "Color": "Amarillo-naranja dorado intenso", "Humedad": "Máx. 10%", "Embalaje": "Calidad de exportación, resistente a la humedad", "Pruebas de laboratorio": "Verificado por laboratorio acreditado" },
+    },
   },
   certData: {
     fssai: { name: "FSSAI", description: "Autoridad de Seguridad y Normas Alimentarias de la India — garantiza el cumplimiento de la seguridad alimentaria para todos los productos.", issuingBody: "Gobierno de la India" },

@@ -24,13 +24,23 @@ const galleryByProduct: Record<string, string[]> = {
   "dehydrated-garlic-minced": [
     "/images/products/garlic/minced-1.webp",
     "/images/products/garlic/minced-2.webp",
+    "/images/products/garlic/minced-3.webp",
   ],
   "dehydrated-garlic-granules": [
     "/images/products/garlic/granules-1.webp",
     "/images/products/garlic/granules-2.webp",
+    "/images/products/garlic/granules-3.webp",
   ],
   "dehydrated-garlic-powder": [
     "/images/products/garlic/powder-1.webp",
+    "/images/products/garlic/powder-2.webp",
+    "/images/products/garlic/powder-3.webp",
+  ],
+  "dehydrated-turmeric-powder": [
+    "/images/products/turmeric/powder-1.webp",
+    "/images/products/turmeric/powder-2.webp",
+    "/images/products/turmeric/powder-3.webp",
+    "/images/products/turmeric/powder-4.webp",
   ],
 };
 

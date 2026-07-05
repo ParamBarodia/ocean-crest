@@ -7,6 +7,16 @@ import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { HoverVideoMedia } from "@/components/products/HoverVideoMedia";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
+// Bento grid lives inside max-w-7xl (≈1216px content width). Each variant's
+// `sizes` hint is capped to its actual max rendered width so next/image
+// doesn't fetch the 1080w/1200w srcset entries on high-DPR desktops where
+// they aren't needed.
+const CARD_SIZES = {
+  hero: "(min-width: 1024px) 600px, 100vw",
+  supporting: "(min-width: 1024px) 300px, 50vw",
+  banner: "(min-width: 1024px) 1200px, 100vw",
+} as const;
+
 const featured: {
   name: string;
   slug: string;
@@ -15,6 +25,7 @@ const featured: {
   tag: string;
   moq: string;
   color: string;
+  variant: keyof typeof CARD_SIZES;
   span: string;
   height: string;
 }[] = [
@@ -26,6 +37,7 @@ const featured: {
     tag: "Dehydrated",
     moq: "MOQ 200 KG",
     color: "from-stone-900/40 via-stone-900/10 to-stone-950/80",
+    variant: "hero",
     // At md (iPad portrait, 2 cols) this stays a normal cell so row 1 isn't
     // sparse; it only becomes the wide hero card at lg.
     span: "lg:col-span-2 lg:row-span-2",
@@ -39,6 +51,7 @@ const featured: {
     tag: "Dehydrated",
     moq: "MOQ 200 KG",
     color: "from-stone-900/40 via-stone-900/10 to-stone-950/80",
+    variant: "supporting",
     span: "",
     height: "h-[260px] md:h-[280px] lg:h-[260px]",
   },
@@ -50,6 +63,7 @@ const featured: {
     tag: "Dehydrated",
     moq: "MOQ 200 KG",
     color: "from-amber-900/30 via-amber-900/5 to-amber-950/75",
+    variant: "supporting",
     span: "",
     height: "h-[260px] md:h-[280px] lg:h-[260px]",
   },
@@ -61,6 +75,7 @@ const featured: {
     tag: "Dehydrated",
     moq: "MOQ 200 KG",
     color: "from-yellow-900/30 via-yellow-900/5 to-yellow-950/75",
+    variant: "supporting",
     span: "",
     height: "h-[260px] md:h-[280px] lg:h-[260px]",
   },
@@ -72,8 +87,23 @@ const featured: {
     tag: "Dehydrated",
     moq: "MOQ 200 KG",
     color: "from-orange-900/30 via-orange-900/5 to-orange-950/75",
+    variant: "supporting",
     span: "",
     height: "h-[260px] md:h-[280px] lg:h-[260px]",
+  },
+  {
+    name: "Dehydrated Turmeric Powder",
+    slug: "dehydrated-turmeric-powder",
+    image: "/images/products/turmeric/powder-1.webp",
+    video: "/videos/products/turmeric/powder.mp4",
+    tag: "Dehydrated",
+    moq: "MOQ 200 KG",
+    color: "from-yellow-800/40 via-yellow-900/10 to-yellow-950/80",
+    variant: "banner",
+    // Full-width banner row introducing the new line — sits below the
+    // 2x2 hero + 4x supporting grid rather than squeezing into it.
+    span: "lg:col-span-4",
+    height: "h-[260px] md:h-[280px] lg:h-[240px]",
   },
 ];
 
@@ -101,7 +131,7 @@ export function ProductShowcase() {
           </Link>
         </div>
 
-        {/* Bento grid — 1 hero card + 3 supporting cards */}
+        {/* Bento grid — 1 hero card + 4 supporting cards + full-width banner */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5 md:gap-6 lg:gap-6 lg:auto-rows-fr">
           {featured.map((product, i) => {
             const pd = t.productData[product.slug];
@@ -120,16 +150,7 @@ export function ProductShowcase() {
                     src={product.image}
                     video={product.video}
                     alt={name}
-                    // Bento grid lives inside max-w-7xl (≈1216px content width).
-                    // Hero card spans 2/4 cols ≈ 600px max; supporting cards
-                    // span 1/4 ≈ 290px max. Capping the upper bound stops
-                    // next/image from picking the 1080w/1200w variants on
-                    // high-DPR desktops where they aren't actually needed.
-                    sizes={
-                      i === 0
-                        ? "(min-width: 1024px) 600px, 100vw"
-                        : "(min-width: 1024px) 300px, 50vw"
-                    }
+                    sizes={CARD_SIZES[product.variant]}
                     isHovered={hoveredSlug === product.slug}
                   />
                   <div

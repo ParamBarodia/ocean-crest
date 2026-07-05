@@ -151,6 +151,7 @@ export function CTABanner({ eyebrow, heading1, heading2, intro }: CTABannerProps
                     <option value="dehydrated-garlic-minced" className="bg-primary">Garlic Minced</option>
                     <option value="dehydrated-garlic-granules" className="bg-primary">Garlic Granules</option>
                     <option value="dehydrated-garlic-powder" className="bg-primary">Garlic Powder</option>
+                    <option value="dehydrated-turmeric-powder" className="bg-primary">Turmeric Powder</option>
                   </select>
                 </div>
                 <div className="space-y-1.5">

@@ -149,13 +149,24 @@ const en = {
     "dehydrated-turmeric-powder": {
       name: "Dehydrated Turmeric Powder",
       category: "Dehydrated",
-      meshBadge: "60–200 mesh",
+      meshBadge: "80–100 mesh",
       shortDescription: "Vibrant, high-curcumin turmeric powder milled from sun-cured rhizomes for deep color and earthy warmth.",
       description: "Ocean Crest Turmeric Powder is milled from carefully selected, sun-cured rhizomes to deliver a deep golden color, high curcumin content, and the warm, earthy aroma that defines premium turmeric.",
       bestFor: ["Curry powders & spice blends", "Turmeric lattes & wellness drinks", "Nutraceutical extracts", "Natural food coloring"],
-      institutionalNote: "Sourced from prime turmeric-growing belts and tested for curcumin content, ensuring consistent color and potency batch after batch.",
-      features: ["Mesh size: 60 to 200 mesh", "Curcumin content: 3–5%", "Color: Deep golden yellow-orange", "Moisture: Max 10%", "Rich, earthy aroma with high color value", "Lab tested for purity and safety"],
-      specs: { Product: "Dehydrated Turmeric Powder", Origin: "India", "Mesh Size": "60 – 200 Mesh", "Curcumin Content": "3 – 5%", Color: "Deep Golden Yellow-Orange", Moisture: "Max 10%", Packaging: "Export-grade, moisture-resistant", "Lab Testing": "Accredited laboratory verified" },
+      institutionalNote: "Sourced from prime turmeric-growing belts and Spice Board certified, with curcumin adjustable from 1% to 6% to match your requirement — consistent color and potency batch after batch.",
+      features: ["Mesh size: 80 to 100 mesh (50–60 mesh available)", "Curcumin content: 1% to 6% (per buyer requirement)", "Color: Vibrant yellow to orange (ASTA color system)", "Moisture: 8.5% to 9.5%", "Strong, characteristic aroma", "Spice Board certified · 12-month shelf life", "Lab tested for purity and safety"],
+      specs: { Product: "Dehydrated Turmeric Powder", Origin: "India", Color: "Vibrant Yellow to Orange (ASTA color system)", Moisture: "8.5% – 9.5%", "Mesh Size": "80 – 100 Mesh (50 – 60 Mesh available)", Aroma: "Strong", "Curcumin Content": "1% – 6% (per buyer requirement)", Turmerone: "2.5% – 5.5%", "Total Ash": "Max 8.5%", "Acid Insoluble Ash": "1% – 1.5%", "Foreign Matter": "Less than 1%", Form: "Dried Powder", "Shelf Life": "12 Months", Certificate: "Spice Board", Packaging: "Export-grade, moisture-resistant" },
+    },
+    "dehydrated-ginger-powder": {
+      name: "Dehydrated Ginger Powder",
+      category: "Dehydrated",
+      meshBadge: "40–100 mesh",
+      shortDescription: "Aromatic ivory ginger powder milled to a customizable 40–100 mesh, with a strong, warm, slightly pungent flavor.",
+      description: "Ocean Crest Ginger Powder is milled from dried ginger into a smooth, uniform ivory powder. Distinctly aromatic with a strong, warm, slightly pungent profile, it delivers consistent flavor and can be customized to your preferred mesh size.",
+      bestFor: ["Spice blends & curry powders", "Bakery & confectionery", "Beverages & wellness drinks", "Marinades & sauces"],
+      institutionalNote: "Particle size is customizable to 40, 60, 80, or 100 mesh with a minimum 95–100% pass-through, so it drops directly into existing blending and packing lines.",
+      features: ["Mesh size: 40, 60, 80, or 100 mesh (customizable)", "Pass-through: min. 95% to 100% through specified mesh", "Moisture: less than 12%", "Volatile oil: min. 1.5 ml/100g", "Appearance: ivory to off-white, uniform and smooth", "Strong, aromatic, slightly bitter flavor profile", "Lab tested for purity and safety"],
+      specs: { Product: "Dehydrated Ginger Powder", Origin: "India", Moisture: "Less than 12%", "Total Ash (Dry Basis)": "Max 8%", "Acid Insoluble Ash": "Max 2%", "Volatile Oil": "Min 1.5 ml/100g", "Particle Size": "40, 60, 80, or 100 Mesh (customizable)", "Pass-Through Rate": "Min 95% – 100% through specified mesh", Appearance: "Ivory to Off-White, uniform and smooth", "Flavor & Aroma": "Strong, aromatic, slightly bitter", Packaging: "Export-grade, moisture-resistant", "Lab Testing": "Accredited laboratory verified" },
     },
   } as Record<string, {
     name: string; category: string; meshBadge: string; shortDescription: string; description: string;

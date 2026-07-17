@@ -39,6 +39,7 @@ const productLinks = [
   { slug: "dehydrated-garlic-granules", fallback: "Garlic Granules" },
   { slug: "dehydrated-garlic-powder", fallback: "Garlic Powder" },
   { slug: "dehydrated-turmeric-powder", fallback: "Turmeric Powder" },
+  { slug: "dehydrated-ginger-powder", fallback: "Ginger Powder" },
 ] as const;
 
 export function Footer() {

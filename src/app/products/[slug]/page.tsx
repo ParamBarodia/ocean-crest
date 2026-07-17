@@ -42,6 +42,11 @@ const galleryByProduct: Record<string, string[]> = {
     "/images/products/turmeric/powder-3.webp",
     "/images/products/turmeric/powder-4.webp",
   ],
+  "dehydrated-ginger-powder": [
+    "/images/products/ginger/powder-2.jpg",
+    "/images/products/ginger/powder-1.jpg",
+    "/images/products/ginger/powder-3.jpg",
+  ],
 };
 
 function getGalleryImages(slug: string): string[] {
